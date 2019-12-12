@@ -22,3 +22,7 @@ Route::post('/indicator', 'IndicatorController@create');
 Route::get('/indicator/{id}', 'IndicatorController@show');
 Route::patch('/indicator/{id}', 'IndicatorController@update');
 Route::delete('/indicator/{id}', 'IndicatorController@delete');
+
+Route::fallback(function(){
+    return response()->api(404, NULL, 'Not Found');
+});
