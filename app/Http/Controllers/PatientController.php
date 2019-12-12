@@ -1,0 +1,73 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use \App\Patient;
+use Illuminate\Http\Request;
+
+class PatientController extends Controller
+{
+    //
+    public function index(Request $request)
+    {
+    	if($request->has('cari')){
+    		$data_pasien = Patient::where('name', 'LIKE', '%'.$request->cari.'%')->get();
+    	} else
+    	{
+    		$data_pasien = Patient::all();
+    	}
+    	return view('pasien.index',['data_pasien'=>$data_pasien]);
+    }
+
+    public function create(Request $request)
+    {
+        Patient::create($request->all());
+        return redirect('/pasien')->with('sukses', 'Data pengguna berhasil ditambahkan.');
+    }
+
+    public function edit($id_pasien)
+    {
+        $pasien = Patient::find($id_pasien);       
+        return view('pasien/edit',['pasien'=>$pasien]);
+    }
+
+    public function update(Request $request, $id_pasien)
+    {
+        $pasien = Patient::find($id_pasien);
+        $pasien->update($request->all());
+        return redirect('/pasien')->with('sukses', 'Data pengguna berhasil disunting');
+    }
+
+    public function delete ($id_pasien)
+    {
+        $pasien = Patient::find($id_pasien);
+        $pasien->delete($pasien);
+        return redirect('/pasien')->with('sukses', 'Data pengguna berhasil dihapus.');
+    }
+
+    public function apiList()
+    {
+        $patients = Patient::all();
+        foreach ($patients as $patient) {
+            $patient->age = $patient->age;
+        }
+        return response()->api(200, $patients);
+    }
+
+    public function apiCreate(Request $request)
+    {
+        $name = $request->input('name');
+        $birth_date = $request->input('birth_date');
+        $sex = $request->input('sex');
+        $kecamatan_id = $request->input('kecamatan_id');
+
+        $patient = new Patient;
+        $patient->name = $name;
+        $patient->birth_date = $birth_date;
+        $patient->sex = $sex;
+        $patient->kecamatan_id = $kecamatan_id;
+        $patient->save();
+
+        return response()->api(201, $patient);
+    }
+}

@@ -9,8 +9,15 @@ class Patient extends Model
     protected $table = 'patient';
     protected $primaryKey = 'id';
     protected $fillable = [
-    	'name', 'birth_date', 'age', 'sex', 'state_id'
+    	'name', 'birth_date', 'sex', 'kecamatan_id'
     ];
+
+    public function getAgeAttribute()
+    {
+        $date_now = date_create(date("Y-m-d"));
+        $date_birth = date_create($this->birth_date);
+
+        $date_diff = date_diff($date_now, $date_birth);
+        return (int)$date_diff->format("%y");
+    }
 }
-
-

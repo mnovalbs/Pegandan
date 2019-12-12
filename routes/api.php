@@ -28,6 +28,9 @@ Route::post('/indicator-step', 'IndicatorStepController@create');
 Route::patch('/indicator-step/{id}', 'IndicatorStepController@update');
 Route::delete('/indicator-step/{id}', 'IndicatorStepController@delete');
 
+Route::get('/patient', 'PatientController@apiList');
+Route::post('/patient', 'PatientController@apiCreate');
+
 Route::fallback(function(){
     return response()->api(404, NULL, 'Not Found');
 });
