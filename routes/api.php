@@ -20,3 +20,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::get('/indicator', 'IndicatorController@index');
 Route::post('/indicator', 'IndicatorController@create');
 Route::get('/indicator/{id}', 'IndicatorController@show');
+Route::patch('/indicator/{id}', 'IndicatorController@update');
+Route::delete('/indicator/{id}', 'IndicatorController@delete');
