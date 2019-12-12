@@ -23,6 +23,11 @@ Route::get('/indicator/{id}', 'IndicatorController@show');
 Route::patch('/indicator/{id}', 'IndicatorController@update');
 Route::delete('/indicator/{id}', 'IndicatorController@delete');
 
+Route::get('/indicator-step', 'IndicatorStepController@list');
+Route::post('/indicator-step', 'IndicatorStepController@create');
+Route::patch('/indicator-step/{id}', 'IndicatorStepController@update');
+Route::delete('/indicator-step/{id}', 'IndicatorStepController@delete');
+
 Route::fallback(function(){
     return response()->api(404, NULL, 'Not Found');
 });

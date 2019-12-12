@@ -16,4 +16,9 @@ class Indicator extends Model
     {
         return $this->belongsTo('App\User', 'user_id');
     }
+
+    public function steps()
+    {
+        return $this->hasMany('App\IndicatorStep', 'indicator_id');
+    }
 }

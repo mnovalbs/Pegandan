@@ -15,7 +15,7 @@ class IndicatorController extends Controller
     
     public function show($id)
     {
-        $indicator = Indicator::with(['user'])->find($id);
+        $indicator = Indicator::with(['user', 'steps'])->find($id);
         $responseCode = !empty($indicator) ? 200 : 404;
         
         return response()->api($responseCode, $indicator);
