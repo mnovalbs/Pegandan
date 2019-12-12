@@ -15,6 +15,17 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         Schema::defaultStringLength(191);
+
+        \Response::macro('api', function($code, $data, $message = '') {
+            $res = [
+                'meta' => [
+                    'code' => $code
+                ],
+                'data' => $data,
+                'message' => $message
+            ];
+            return response()->json($res, $code);
+        });
     }
 
     /**
