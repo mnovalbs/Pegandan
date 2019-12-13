@@ -1,1 +1,37 @@
-//
+.modal-open .modal {
+  opacity: 1 !important;
+
+  .modal-dialog {
+    margin-top: 100px;
+    // top: 50%;
+    // transform: translateY(-50%) !important;
+  }
+}
+
+.form-group legend {
+  font-size: 1em;
+  margin-bottom: 5px;
+  border: 0;
+}
+
+.modal-header .modal-title {
+  float: left;
+  font-weight: bold;
+}
+
+.custom-select {
+  display: inline-block;
+  width: 100%;
+  height: calc(1.5em + .75rem + 2px);
+  padding: .375rem 1.75rem .375rem .75rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #495057;
+  vertical-align: middle;
+  background-color: #fff;
+  border: 1px solid #ced4da;
+  border-radius: .25rem;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
