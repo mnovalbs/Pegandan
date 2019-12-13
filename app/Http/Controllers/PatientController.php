@@ -70,4 +70,21 @@ class PatientController extends Controller
 
         return response()->api(201, $patient);
     }
+
+    public function apiUpdate(Request $request, $id)
+    {
+        $name = $request->input('name');
+        $birth_date = $request->input('birth_date');
+        $sex = $request->input('sex');
+        $kecamatan_id = $request->input('kecamatan_id');
+
+        $patient = Patient::find($id);
+        $patient->name = $name;
+        $patient->birth_date = $birth_date;
+        $patient->sex = $sex;
+        $patient->kecamatan_id = $kecamatan_id;
+        $patient->save();
+
+        return response()->api(201, $patient);
+    }
 }
