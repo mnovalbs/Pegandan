@@ -14,7 +14,7 @@ export default {
   name: "NavIndicator",
 
   mounted() {
-    this.fetchData();
+    this.$store.dispatch('fetchIndicators');
   },
 
   computed: {
@@ -22,12 +22,5 @@ export default {
       indicators: state => state.indicators
     })
   },
-
-  methods: {
-    async fetchData() {
-      const { data } = await API.indicators.list();
-      this.$store.commit('setIndicators', data.data);
-    }
-  }
 };
 </script>
