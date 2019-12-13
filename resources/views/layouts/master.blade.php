@@ -103,7 +103,13 @@
     </div>
     <!-- END LEFT SIDEBAR -->
     <!-- MAIN -->
-    @yield('content')
+    <div class="main">
+      <div class="main-content">
+        <div class="container-fluid">
+          @yield('content')
+        </div>
+      </div>
+    </div>
     <!-- END MAIN -->
     <div class="clearfix"></div>
     <footer>

@@ -1,3 +1,8 @@
-require('./bootstrap');
+// import './bootstrap';
+import Vue from 'vue';
+import BootstrapVue from 'bootstrap-vue';
 
-const Vue = require('vue');
+Vue.use(BootstrapVue);
+
+import 'bootstrap-vue/dist/bootstrap-vue.css'
+import './apps/patient';
