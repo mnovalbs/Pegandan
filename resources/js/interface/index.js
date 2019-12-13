@@ -7,5 +7,9 @@ export default {
     list: () => axios.get(apiUrl('/patient')),
     update: (id, data) => axios.patch(apiUrl(`/patient/${id}`), data),
     create: data => axios.post(apiUrl('/patient'), data)
+  },
+
+  indicators: {
+    list: () => axios.get(apiUrl('/indicator'))
   }
 }

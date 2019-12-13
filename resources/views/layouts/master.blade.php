@@ -79,8 +79,9 @@
             <li><a href="pasien" class=""><i class="lnr lnr-users"></i> <span>Pasien</span></a></li>
             <li>
               <a href="#subPages" data-toggle="collapse" class="collapsed"><i class="lnr lnr-list"></i> <span>Indikator</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
-              <div id="subPages" class="collapse ">
-                <ul class="nav">
+              <div id="subPages" class="collapse">
+                <ul id="nav-indicators"></ul>
+                <!-- <ul class="nav">
                   <li><a href="#" class="">Ibu Hamil</a></li>
                   <li><a href="#" class="">Ibu Bersalin</a></li>
                   <li><a href="#" class="">Bayi Baru Lahir</a></li>
@@ -93,7 +94,7 @@
                   <li><a href="#" class="">Penderita Tuberkulosis</a></li>
                   <li><a href="#" class="">Orang Dengan Gangguan jiwa</a></li>
                   <li><a href="#" class="">Penderita HIV</a></li>
-                </ul>
+                </ul> -->
               </div>
             </li>
             <li><a href="/" class=""><i class="lnr lnr-book"></i>Laporan</a></li>
