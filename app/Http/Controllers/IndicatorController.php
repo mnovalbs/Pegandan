@@ -6,9 +6,14 @@ use Illuminate\Http\Request;
 
 class IndicatorController extends Controller 
 {
+    public function view(Request $request)
+    {
+    	return view('indicator.index');
+    }
+
     public function index(Request $request) 
     {
-        $indikators = Indicator::with(['user'])->get();
+        $indikators = Indicator::with(['user', 'steps'])->get();
         
         return response()->api(200, $indikators);
     }

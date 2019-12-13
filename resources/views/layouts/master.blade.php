@@ -75,26 +75,13 @@
       <div class="sidebar-scroll">
         <nav>
           <ul class="nav">
-            <li><a href="/" class="active"><i class="lnr lnr-home"></i> <span>Dashboard</span></a></li>
+            <li><a href="/"><i class="lnr lnr-home"></i> <span>Dashboard</span></a></li>
             <li><a href="pasien" class=""><i class="lnr lnr-users"></i> <span>Pasien</span></a></li>
+            <li><a href="/indicator"><i class="lnr lnr-plus-circle"></i>Setting Indikator</a></li>
             <li>
               <a href="#subPages" data-toggle="collapse" class="collapsed"><i class="lnr lnr-list"></i> <span>Indikator</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
               <div id="subPages" class="collapse">
                 <ul id="nav-indicators"></ul>
-                <!-- <ul class="nav">
-                  <li><a href="#" class="">Ibu Hamil</a></li>
-                  <li><a href="#" class="">Ibu Bersalin</a></li>
-                  <li><a href="#" class="">Bayi Baru Lahir</a></li>
-                  <li><a href="#" class="">Balita</a></li>
-                  <li><a href="#" class="">Anak Usia Pendidikan Dasar</a></li>
-                  <li><a href="#" class="">Warga Usia 15-59 Tahun</a></li>
-                  <li><a href="#" class="">Warga Usia &ge; 60 Tahun</a></li>
-                  <li><a href="#" class="">Penderita Hipertensi</a></li>
-                  <li><a href="#" class="">Penderita Diabetes Melitus</a></li>
-                  <li><a href="#" class="">Penderita Tuberkulosis</a></li>
-                  <li><a href="#" class="">Orang Dengan Gangguan jiwa</a></li>
-                  <li><a href="#" class="">Penderita HIV</a></li>
-                </ul> -->
               </div>
             </li>
             <li><a href="/" class=""><i class="lnr lnr-book"></i>Laporan</a></li>
