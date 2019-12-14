@@ -1995,6 +1995,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
 
 
 
@@ -2026,6 +2029,45 @@ var defaultData = {
     Panel: _components_Panel__WEBPACK_IMPORTED_MODULE_3__["default"]
   },
   methods: {
+    requestDelete: function requestDelete(row) {
+      var _row$item, name, id, conf;
+
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.async(function requestDelete$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              _row$item = row.item, name = _row$item.name, id = _row$item.id;
+              conf = confirm("Delete indicator ".concat(name, "?"));
+
+              if (conf) {
+                _context.next = 4;
+                break;
+              }
+
+              return _context.abrupt("return");
+
+            case 4:
+              _context.prev = 4;
+              _context.next = 7;
+              return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(_interface__WEBPACK_IMPORTED_MODULE_4__["default"].indicators["delete"](id));
+
+            case 7:
+              this.fetchData();
+              _context.next = 13;
+              break;
+
+            case 10:
+              _context.prev = 10;
+              _context.t0 = _context["catch"](4);
+              alert("Tidak berhasil menghapus indicator ".concat(name));
+
+            case 13:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, null, this, [[4, 10]]);
+    },
     edit: function edit(row) {
       var id = row.item.id;
       var data = this.list.find(function (patient) {
@@ -2035,68 +2077,68 @@ var defaultData = {
       this.$bvModal.show('modal-edit');
     },
     doEdit: function doEdit() {
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.async(function doEdit$(_context) {
-        while (1) {
-          switch (_context.prev = _context.next) {
-            case 0:
-              _context.prev = 0;
-              this.submitLoading = true;
-              _context.next = 4;
-              return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(_interface__WEBPACK_IMPORTED_MODULE_4__["default"].indicators.update(this.dataEdit.id, this.dataEdit));
-
-            case 4:
-              this.$bvModal.hide('modal-edit');
-              this.fetchData();
-              _context.next = 11;
-              break;
-
-            case 8:
-              _context.prev = 8;
-              _context.t0 = _context["catch"](0);
-              alert(_context.t0.response.data.message);
-
-            case 11:
-              _context.prev = 11;
-              this.submitLoading = false;
-              return _context.finish(11);
-
-            case 14:
-            case "end":
-              return _context.stop();
-          }
-        }
-      }, null, this, [[0, 8, 11, 14]]);
-    },
-    doCreate: function doCreate() {
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.async(function doCreate$(_context2) {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.async(function doEdit$(_context2) {
         while (1) {
           switch (_context2.prev = _context2.next) {
             case 0:
               _context2.prev = 0;
               this.submitLoading = true;
               _context2.next = 4;
+              return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(_interface__WEBPACK_IMPORTED_MODULE_4__["default"].indicators.update(this.dataEdit.id, this.dataEdit));
+
+            case 4:
+              this.$bvModal.hide('modal-edit');
+              this.fetchData();
+              _context2.next = 11;
+              break;
+
+            case 8:
+              _context2.prev = 8;
+              _context2.t0 = _context2["catch"](0);
+              alert(_context2.t0.response.data.message);
+
+            case 11:
+              _context2.prev = 11;
+              this.submitLoading = false;
+              return _context2.finish(11);
+
+            case 14:
+            case "end":
+              return _context2.stop();
+          }
+        }
+      }, null, this, [[0, 8, 11, 14]]);
+    },
+    doCreate: function doCreate() {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.async(function doCreate$(_context3) {
+        while (1) {
+          switch (_context3.prev = _context3.next) {
+            case 0:
+              _context3.prev = 0;
+              this.submitLoading = true;
+              _context3.next = 4;
               return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(_interface__WEBPACK_IMPORTED_MODULE_4__["default"].indicators.create(this.dataAdd));
 
             case 4:
               this.dataAdd = Object.assign(defaultData);
               this.$bvModal.hide('modal-create');
               this.fetchData();
-              _context2.next = 12;
+              _context3.next = 12;
               break;
 
             case 9:
-              _context2.prev = 9;
-              _context2.t0 = _context2["catch"](0);
-              alert(_context2.t0.response.data.message);
+              _context3.prev = 9;
+              _context3.t0 = _context3["catch"](0);
+              alert(_context3.t0.response.data.message);
 
             case 12:
-              _context2.prev = 12;
+              _context3.prev = 12;
               this.submitLoading = false;
-              return _context2.finish(12);
+              return _context3.finish(12);
 
             case 15:
             case "end":
-              return _context2.stop();
+              return _context3.stop();
           }
         }
       }, null, this, [[0, 9, 12, 15]]);
@@ -36771,16 +36813,36 @@ var render = function() {
                 fn: function(row) {
                   return [
                     _c(
-                      "b-button",
-                      {
-                        attrs: { size: "sm" },
-                        on: {
-                          click: function($event) {
-                            return _vm.edit(row)
-                          }
-                        }
-                      },
-                      [_vm._v("Edit")]
+                      "div",
+                      [
+                        _c(
+                          "b-button",
+                          {
+                            attrs: { size: "sm" },
+                            on: {
+                              click: function($event) {
+                                return _vm.edit(row)
+                              }
+                            }
+                          },
+                          [_vm._v("Edit")]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "b-button",
+                          {
+                            staticClass: "btn btn-danger",
+                            attrs: { size: "sm" },
+                            on: {
+                              click: function($event) {
+                                return _vm.requestDelete(row)
+                              }
+                            }
+                          },
+                          [_vm._v("Delete")]
+                        )
+                      ],
+                      1
                     )
                   ]
                 }
