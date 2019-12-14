@@ -1,71 +1,71 @@
 <template>
   <div>
-    <b-button class="btn btn-primary btn-create" @click="$bvModal.show('modal-create')">Create new Indicator</b-button>
+    <b-button class="btn btn-primary btn-create" @click="$bvModal.show('modal-create')">Create new Step</b-button>
 
-    <panel title="Indicator">
+    <panel :title="`Indicator Step [${indicatorName}]`">
       <b-table striped hover :items="list" :fields="fields">
         <template v-slot:cell(action)="row">
           <b-button size="sm" @click="edit(row)">Edit</b-button>
         </template>
-
-        <template v-slot:cell(step)="row">
-          <router-link :to="`/indicator/${row.item.id}/steps`">{{ row.item.steps.length }} step</router-link>
-        </template>
       </b-table>
     </panel>
 
-    <b-modal id="modal-edit" title="Edit Indicator" hide-footer>
-      <indicator-form :form="dataEdit" :loading="submitLoading" @submit="doEdit"></indicator-form>
+    <b-modal id="modal-edit" title="Edit Indicator Step" hide-footer>
+      <indicator-step-form :form="dataEdit" :loading="submitLoading" @submit="doEdit"></indicator-step-form>
     </b-modal>
 
-    <b-modal id="modal-create" title="Create new Indicator" hide-footer>
-      <indicator-form :form="dataAdd" :loading="submitLoading" @submit="doCreate"></indicator-form>
+    <b-modal id="modal-create" title="Create new Step" hide-footer>
+      <indicator-step-form :form="dataAdd" :loading="submitLoading" @submit="doCreate"></indicator-step-form>
     </b-modal>
   </div>
 </template>
 
 <script>
-import { mapState } from 'vuex';
-import IndicatorForm from './IndicatorForm';
+import API from '../../interface';
 import Panel from "../../components/Panel";
-import API from "../../interface";
+import IndicatorStepForm from './IndicatorStepForm';
 
 const defaultData = {
-  name: '',
+  label: '',
 }
 
 export default {
-  name: "IndicatorList",
+  name: "IndicatorStep",
 
   data() {
     return {
       submitLoading: false,
       loading: true,
 
+      list: [],
+      indicatorId: 0,
+      indicatorName: '',
+
       dataEdit: {},
       dataAdd: Object.assign(defaultData)
-    };
-  },
-
-  computed: {
-    ...mapState({
-      list: state => state.indicators
-    }),
-
-    fields() {
-      return ["id", "name", "step", "action"];
     }
   },
 
   components: {
-    IndicatorForm,
-    Panel
+    Panel,
+    IndicatorStepForm
+  },
+
+  computed: {
+    fields() {
+      return ["id", "label", "action"];
+    }
+  },
+
+  mounted() {
+    this.indicatorId = parseInt(this.$route.params.id);
+    this.fetchData();
   },
 
   methods: {
     edit(row) {
       const { id } = row.item;
-      const data = this.list.find(patient => patient.id === id);
+      const data = this.list.find(l => l.id === id);
 
       this.dataEdit = Object.assign({}, data);
       this.$bvModal.show('modal-edit');
@@ -74,7 +74,7 @@ export default {
     async doEdit() {
       try {
         this.submitLoading = true;
-        await API.indicators.update(this.dataEdit.id, this.dataEdit);
+        await API.indicators.step.update(this.dataEdit.id, this.dataEdit);
         this.$bvModal.hide('modal-edit');
         this.fetchData();
       } catch (e) {
@@ -87,7 +87,10 @@ export default {
     async doCreate() {
       try {
         this.submitLoading = true;
-        await API.indicators.create(this.dataAdd);
+        await API.indicators.step.create({
+          ...this.dataAdd,
+          indicator_id: this.indicatorId
+        });
         this.dataAdd = Object.assign(defaultData);
         this.$bvModal.hide('modal-create');
         this.fetchData();
@@ -98,8 +101,10 @@ export default {
       }
     },
 
-    fetchData() {
-      this.$store.dispatch('fetchIndicators');
+    async fetchData() {
+      const { data } = await API.indicators.step.list(this.indicatorId);
+      this.list = data.data.steps;
+      this.indicatorName = data.data.name;
     }
   }
 };
