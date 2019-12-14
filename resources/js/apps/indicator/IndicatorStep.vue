@@ -5,7 +5,10 @@
     <panel :title="`Indicator Step [${indicatorName}]`">
       <b-table striped hover :items="list" :fields="fields">
         <template v-slot:cell(action)="row">
-          <b-button size="sm" @click="edit(row)">Edit</b-button>
+          <div>
+            <b-button size="sm" @click="edit(row)">Edit</b-button>
+            <b-button size="sm" @click="requestDelete(row)" class="btn btn-danger">Delete</b-button>
+          </div>
         </template>
       </b-table>
     </panel>
@@ -63,6 +66,18 @@ export default {
   },
 
   methods: {
+    async requestDelete(row) {
+      const { label, id } = row.item;
+      const conf = confirm(`Delete step ${label}?`);
+      if (!conf) return;
+      try {
+        await API.indicators.step.delete(id);
+        this.fetchData();
+      } catch (e) {
+        alert(`Tidak berhasil menghapus step ${label}`);
+      }
+    },
+
     edit(row) {
       const { id } = row.item;
       const data = this.list.find(l => l.id === id);

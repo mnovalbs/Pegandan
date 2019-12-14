@@ -2195,6 +2195,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
 
 
 
@@ -2228,6 +2231,45 @@ var defaultData = {
     this.fetchData();
   },
   methods: {
+    requestDelete: function requestDelete(row) {
+      var _row$item, label, id, conf;
+
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.async(function requestDelete$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              _row$item = row.item, label = _row$item.label, id = _row$item.id;
+              conf = confirm("Delete step ".concat(label, "?"));
+
+              if (conf) {
+                _context.next = 4;
+                break;
+              }
+
+              return _context.abrupt("return");
+
+            case 4:
+              _context.prev = 4;
+              _context.next = 7;
+              return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(_interface__WEBPACK_IMPORTED_MODULE_1__["default"].indicators.step["delete"](id));
+
+            case 7:
+              this.fetchData();
+              _context.next = 13;
+              break;
+
+            case 10:
+              _context.prev = 10;
+              _context.t0 = _context["catch"](4);
+              alert("Tidak berhasil menghapus step ".concat(label));
+
+            case 13:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, null, this, [[4, 10]]);
+    },
     edit: function edit(row) {
       var id = row.item.id;
       var data = this.list.find(function (l) {
@@ -2237,46 +2279,46 @@ var defaultData = {
       this.$bvModal.show('modal-edit');
     },
     doEdit: function doEdit() {
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.async(function doEdit$(_context) {
-        while (1) {
-          switch (_context.prev = _context.next) {
-            case 0:
-              _context.prev = 0;
-              this.submitLoading = true;
-              _context.next = 4;
-              return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(_interface__WEBPACK_IMPORTED_MODULE_1__["default"].indicators.step.update(this.dataEdit.id, this.dataEdit));
-
-            case 4:
-              this.$bvModal.hide('modal-edit');
-              this.fetchData();
-              _context.next = 11;
-              break;
-
-            case 8:
-              _context.prev = 8;
-              _context.t0 = _context["catch"](0);
-              alert(_context.t0.response.data.message);
-
-            case 11:
-              _context.prev = 11;
-              this.submitLoading = false;
-              return _context.finish(11);
-
-            case 14:
-            case "end":
-              return _context.stop();
-          }
-        }
-      }, null, this, [[0, 8, 11, 14]]);
-    },
-    doCreate: function doCreate() {
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.async(function doCreate$(_context2) {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.async(function doEdit$(_context2) {
         while (1) {
           switch (_context2.prev = _context2.next) {
             case 0:
               _context2.prev = 0;
               this.submitLoading = true;
               _context2.next = 4;
+              return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(_interface__WEBPACK_IMPORTED_MODULE_1__["default"].indicators.step.update(this.dataEdit.id, this.dataEdit));
+
+            case 4:
+              this.$bvModal.hide('modal-edit');
+              this.fetchData();
+              _context2.next = 11;
+              break;
+
+            case 8:
+              _context2.prev = 8;
+              _context2.t0 = _context2["catch"](0);
+              alert(_context2.t0.response.data.message);
+
+            case 11:
+              _context2.prev = 11;
+              this.submitLoading = false;
+              return _context2.finish(11);
+
+            case 14:
+            case "end":
+              return _context2.stop();
+          }
+        }
+      }, null, this, [[0, 8, 11, 14]]);
+    },
+    doCreate: function doCreate() {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.async(function doCreate$(_context3) {
+        while (1) {
+          switch (_context3.prev = _context3.next) {
+            case 0:
+              _context3.prev = 0;
+              this.submitLoading = true;
+              _context3.next = 4;
               return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(_interface__WEBPACK_IMPORTED_MODULE_1__["default"].indicators.step.create(_objectSpread({}, this.dataAdd, {
                 indicator_id: this.indicatorId
               })));
@@ -2285,22 +2327,22 @@ var defaultData = {
               this.dataAdd = Object.assign(defaultData);
               this.$bvModal.hide('modal-create');
               this.fetchData();
-              _context2.next = 12;
+              _context3.next = 12;
               break;
 
             case 9:
-              _context2.prev = 9;
-              _context2.t0 = _context2["catch"](0);
-              alert(_context2.t0.response.data.message);
+              _context3.prev = 9;
+              _context3.t0 = _context3["catch"](0);
+              alert(_context3.t0.response.data.message);
 
             case 12:
-              _context2.prev = 12;
+              _context3.prev = 12;
               this.submitLoading = false;
-              return _context2.finish(12);
+              return _context3.finish(12);
 
             case 15:
             case "end":
-              return _context2.stop();
+              return _context3.stop();
           }
         }
       }, null, this, [[0, 9, 12, 15]]);
@@ -2308,22 +2350,22 @@ var defaultData = {
     fetchData: function fetchData() {
       var _ref, data;
 
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.async(function fetchData$(_context3) {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.async(function fetchData$(_context4) {
         while (1) {
-          switch (_context3.prev = _context3.next) {
+          switch (_context4.prev = _context4.next) {
             case 0:
-              _context3.next = 2;
+              _context4.next = 2;
               return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(_interface__WEBPACK_IMPORTED_MODULE_1__["default"].indicators.step.list(this.indicatorId));
 
             case 2:
-              _ref = _context3.sent;
+              _ref = _context4.sent;
               data = _ref.data;
               this.list = data.data.steps;
               this.indicatorName = data.data.name;
 
             case 6:
             case "end":
-              return _context3.stop();
+              return _context4.stop();
           }
         }
       }, null, this);
@@ -36959,16 +37001,36 @@ var render = function() {
                 fn: function(row) {
                   return [
                     _c(
-                      "b-button",
-                      {
-                        attrs: { size: "sm" },
-                        on: {
-                          click: function($event) {
-                            return _vm.edit(row)
-                          }
-                        }
-                      },
-                      [_vm._v("Edit")]
+                      "div",
+                      [
+                        _c(
+                          "b-button",
+                          {
+                            attrs: { size: "sm" },
+                            on: {
+                              click: function($event) {
+                                return _vm.edit(row)
+                              }
+                            }
+                          },
+                          [_vm._v("Edit")]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "b-button",
+                          {
+                            staticClass: "btn btn-danger",
+                            attrs: { size: "sm" },
+                            on: {
+                              click: function($event) {
+                                return _vm.requestDelete(row)
+                              }
+                            }
+                          },
+                          [_vm._v("Delete")]
+                        )
+                      ],
+                      1
                     )
                   ]
                 }
