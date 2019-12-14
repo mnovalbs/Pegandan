@@ -63,6 +63,6 @@ class Handler extends ExceptionHandler
             $statusCode = 500;
         }
 
-        return response()->api($statusCode, NULL, 'Something went wrong');
+        return response()->api($statusCode, NULL, $exception->getMessage());
     }
 }

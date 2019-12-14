@@ -35,3 +35,7 @@
   -moz-appearance: none;
   appearance: none;
 }
+
+.form-checkbox.custom-control.custom-checkbox label {
+  font-weight: normal;
+}

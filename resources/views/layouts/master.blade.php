@@ -84,7 +84,7 @@
                 <ul id="nav-indicators"></ul>
               </div>
             </li>
-            <li><a href="/" class=""><i class="lnr lnr-book"></i>Laporan</a></li>
+            <li><a href="/report" class=""><i class="lnr lnr-book"></i>Laporan</a></li>
             <li><a href="/user" class=""><i class="lnr lnr-user"></i>User</a></li>  
           </ul>
         </nav>

@@ -22,5 +22,11 @@ export default {
       update: (id, data) => axios.patch(apiUrl(`/indicator-step/${id}`), data),
       delete: id => axios.delete(apiUrl(`/indicator-step/${id}`))
     }
+  },
+
+  report: {
+    list: () => axios.get(apiUrl('/report')),
+    create: data => axios.post(apiUrl(`/report`), data),
+    delete: id => axios.delete(apiUrl(`/report/${id}`))
   }
 }
