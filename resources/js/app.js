@@ -1,6 +1,7 @@
 // import './bootstrap';
 import Vue from 'vue';
 import Vuex from 'vuex';
+import VueRouter from 'vue-router';
 import BootstrapVue from 'bootstrap-vue';
 import installStore from './store';
 
@@ -9,6 +10,7 @@ import 'bootstrap-vue/dist/bootstrap-vue.css'
 
 Vue.use(BootstrapVue);
 Vue.use(Vuex);
+Vue.use(VueRouter);
 
 const store = installStore(Vue);
 

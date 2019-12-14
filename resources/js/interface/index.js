@@ -12,6 +12,7 @@ export default {
   indicators: {
     list: () => axios.get(apiUrl('/indicator')),
     update: (id, data) => axios.patch(apiUrl(`/indicator/${id}`), data),
-    create: data => axios.post(apiUrl('/indicator'), data)
+    create: data => axios.post(apiUrl('/indicator'), data),
+    detail: id => axios.get(apiUrl(`/indicator/${id}`))
   }
 }

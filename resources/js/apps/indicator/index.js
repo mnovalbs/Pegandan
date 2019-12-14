@@ -1,4 +1,5 @@
 import App from './App';
+import router from './router';
 
 export default function install(Vue, store) {
   const el = '#indicators';
@@ -7,6 +8,7 @@ export default function install(Vue, store) {
   new Vue({
     el,
     store,
+    router,
     render: h => h(App)
   });
 }

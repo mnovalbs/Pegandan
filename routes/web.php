@@ -14,7 +14,8 @@ Route::get('/', function () {
     return view('/welcome');
 });
 
-Route::get('/indicator', 'IndicatorController@view');
+Route::get('/indicator/{vue_capture?}', 'IndicatorController@view')
+    ->where('vue_capture', '[\/\w\.-]*');
 Route::get('/user','UserController@index');
 Route::post('/user/create','UserController@create');
 Route::get('/user/{id}/edit','UserController@edit');
