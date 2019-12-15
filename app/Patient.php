@@ -20,4 +20,9 @@ class Patient extends Model
         $date_diff = date_diff($date_now, $date_birth);
         return (int)$date_diff->format("%y");
     }
+
+    public function history()
+    {
+        return $this->hasMany('App\Report', 'patient_id');
+    }
 }

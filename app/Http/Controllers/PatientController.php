@@ -87,4 +87,17 @@ class PatientController extends Controller
 
         return response()->api(201, $patient);
     }
+
+    public function apiDetail(Request $request, $id)
+    {
+        $patient = Patient::with(['history'])->find($id);
+
+        foreach($patient->history as $history)
+        {
+            $history->indicator;
+            $history->steps;
+        }
+
+        return response()->api(200, $patient);
+    }
 }

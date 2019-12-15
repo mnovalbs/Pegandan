@@ -35,6 +35,7 @@ Route::patch('/indicator-step/{id}', 'IndicatorStepController@update');
 Route::delete('/indicator-step/{id}', 'IndicatorStepController@delete');
 
 Route::get('/patient', 'PatientController@apiList');
+Route::get('/patient/{id}', 'PatientController@apiDetail');
 Route::post('/patient', 'PatientController@apiCreate');
 Route::patch('/patient/{id}', 'PatientController@apiUpdate');
 
