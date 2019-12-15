@@ -29,6 +29,11 @@ Route::get('/indicator/{id}', 'IndicatorController@show');
 Route::patch('/indicator/{id}', 'IndicatorController@update');
 Route::delete('/indicator/{id}', 'IndicatorController@delete');
 
+Route::get('/kelurahan', 'KelurahanController@index');
+Route::post('/kelurahan', 'KelurahanController@create');
+Route::patch('/kelurahan/{id}', 'KelurahanController@update');
+Route::delete('/kelurahan/{id}', 'KelurahanController@delete');
+
 Route::get('/indicator-step', 'IndicatorStepController@list');
 Route::post('/indicator-step', 'IndicatorStepController@create');
 Route::patch('/indicator-step/{id}', 'IndicatorStepController@update');

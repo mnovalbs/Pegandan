@@ -27,6 +27,7 @@ Route::group(['middleware'=>['auth','occupation:Admin']], function()
 	Route::get('/user/{id}/edit','UserController@edit');
 	Route::post('/user/{id}/update','UserController@update');
 	Route::get('/user/{id}/delete','UserController@delete');
+	Route::get('/kelurahan','KelurahanController@view');
 	Route::get('/patient/{vue_capture?}', 'PatientController@index')
 			->where('vue_capture', '[\/\w\.-]*');
 	Route::get('/report','ReportController@view');

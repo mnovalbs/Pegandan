@@ -10,6 +10,7 @@ import patientInstall from './apps/patient';
 import navIndicatorInstall from './apps/nav-indicator';
 import indicatorInstall from './apps/indicator';
 import reportInstall from './apps/report';
+import kelurahanInstall from './apps/kelurahan';
 
 import '../sass/app.scss';
 import 'bootstrap-vue/dist/bootstrap-vue.css'
@@ -25,3 +26,4 @@ patientInstall(Vue, store);
 navIndicatorInstall(Vue, store);
 indicatorInstall(Vue, store);
 reportInstall(Vue, store);
+kelurahanInstall(Vue, store);

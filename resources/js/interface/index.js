@@ -10,6 +10,13 @@ export default {
     create: data => axios.post(apiUrl('/patient'), data)
   },
 
+  kelurahan: {
+    list: () => axios.get(apiUrl('/kelurahan')),
+    update: (id, data) => axios.patch(apiUrl(`/kelurahan/${id}`), data),
+    create: data => axios.post(apiUrl('/kelurahan'), data),
+    delete: id => axios.delete(apiUrl(`/kelurahan/${id}`))
+  },
+
   indicators: {
     list: () => axios.get(apiUrl('/indicator')),
     update: (id, data) => axios.patch(apiUrl(`/indicator/${id}`), data),
