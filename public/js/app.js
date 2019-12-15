@@ -3044,42 +3044,10 @@ var defaultData = {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _ReportForm__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ReportForm */ "./resources/js/apps/report/ReportForm.vue");
-/* harmony import */ var _components_Panel__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../components/Panel */ "./resources/js/components/Panel.vue");
+/* harmony import */ var _components_ReportForm__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../components/ReportForm */ "./resources/js/components/ReportForm.vue");
+/* harmony import */ var _components_ReportTable__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../components/ReportTable */ "./resources/js/components/ReportTable.vue");
 /* harmony import */ var _interface__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../interface */ "./resources/js/interface/index.js");
 
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -3116,140 +3084,47 @@ var defaultData = {
       submitLoading: false,
       loading: true,
       list: [],
-      dataEdit: {},
       dataAdd: Object.assign(defaultData)
     };
   },
-  computed: {
-    fields: function fields() {
-      return ["id", "patient", "indicator", "date", "status", "steps", "action"];
-    }
-  },
   components: {
-    ReportForm: _ReportForm__WEBPACK_IMPORTED_MODULE_1__["default"],
-    Panel: _components_Panel__WEBPACK_IMPORTED_MODULE_2__["default"]
+    ReportTable: _components_ReportTable__WEBPACK_IMPORTED_MODULE_2__["default"],
+    ReportForm: _components_ReportForm__WEBPACK_IMPORTED_MODULE_1__["default"]
   },
   mounted: function mounted() {
     this.fetchData();
   },
   methods: {
-    edit: function edit(row) {
-      var item = row.item;
-      var data = {
-        id: item.id,
-        patient_id: item.patient_id,
-        indicator_id: item.indicator_id,
-        reported_at: item.reported_at,
-        steps_id: item.steps.filter(function (step) {
-          return step.status;
-        }).map(function (step) {
-          return step.indicator_step_id;
-        })
-      };
-      this.dataEdit = Object.assign({}, data);
-      this.$bvModal.show("modal-edit");
-    },
-    requestDelete: function requestDelete(row) {
-      var id, conf;
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.async(function requestDelete$(_context) {
+    doCreate: function doCreate() {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.async(function doCreate$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              id = row.item.id;
-              conf = confirm("Delete report?");
-
-              if (conf) {
-                _context.next = 4;
-                break;
-              }
-
-              return _context.abrupt("return");
-
-            case 4:
-              _context.prev = 4;
-              _context.next = 7;
-              return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(_interface__WEBPACK_IMPORTED_MODULE_3__["default"].report["delete"](id));
-
-            case 7:
-              this.fetchData();
-              _context.next = 13;
-              break;
-
-            case 10:
-              _context.prev = 10;
-              _context.t0 = _context["catch"](4);
-              alert("Tidak berhasil menghapus indicator");
-
-            case 13:
-            case "end":
-              return _context.stop();
-          }
-        }
-      }, null, this, [[4, 10]]);
-    },
-    doEdit: function doEdit() {
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.async(function doEdit$(_context2) {
-        while (1) {
-          switch (_context2.prev = _context2.next) {
-            case 0:
-              _context2.prev = 0;
+              _context.prev = 0;
               this.submitLoading = true;
-              _context2.next = 4;
-              return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(_interface__WEBPACK_IMPORTED_MODULE_3__["default"].report.update(this.dataEdit.id, this.dataEdit));
-
-            case 4:
-              this.$bvModal.hide("modal-edit");
-              this.fetchData();
-              _context2.next = 11;
-              break;
-
-            case 8:
-              _context2.prev = 8;
-              _context2.t0 = _context2["catch"](0);
-              alert(_context2.t0.response.data.message);
-
-            case 11:
-              _context2.prev = 11;
-              this.submitLoading = false;
-              return _context2.finish(11);
-
-            case 14:
-            case "end":
-              return _context2.stop();
-          }
-        }
-      }, null, this, [[0, 8, 11, 14]]);
-    },
-    doCreate: function doCreate() {
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.async(function doCreate$(_context3) {
-        while (1) {
-          switch (_context3.prev = _context3.next) {
-            case 0:
-              _context3.prev = 0;
-              this.submitLoading = true;
-              _context3.next = 4;
+              _context.next = 4;
               return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(_interface__WEBPACK_IMPORTED_MODULE_3__["default"].report.create(this.dataAdd));
 
             case 4:
               this.dataAdd = Object.assign(defaultData);
               this.$bvModal.hide("modal-create");
               this.fetchData();
-              _context3.next = 12;
+              _context.next = 12;
               break;
 
             case 9:
-              _context3.prev = 9;
-              _context3.t0 = _context3["catch"](0);
-              alert(_context3.t0.response.data.message);
+              _context.prev = 9;
+              _context.t0 = _context["catch"](0);
+              alert(_context.t0.response.data.message);
 
             case 12:
-              _context3.prev = 12;
+              _context.prev = 12;
               this.submitLoading = false;
-              return _context3.finish(12);
+              return _context.finish(12);
 
             case 15:
             case "end":
-              return _context3.stop();
+              return _context.stop();
           }
         }
       }, null, this, [[0, 9, 12, 15]]);
@@ -3257,240 +3132,38 @@ var defaultData = {
     fetchData: function fetchData() {
       var _ref, data;
 
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.async(function fetchData$(_context4) {
-        while (1) {
-          switch (_context4.prev = _context4.next) {
-            case 0:
-              _context4.prev = 0;
-              this.loading = true;
-              _context4.next = 4;
-              return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(_interface__WEBPACK_IMPORTED_MODULE_3__["default"].report.list());
-
-            case 4:
-              _ref = _context4.sent;
-              data = _ref.data;
-              this.list = data.data;
-              _context4.next = 12;
-              break;
-
-            case 9:
-              _context4.prev = 9;
-              _context4.t0 = _context4["catch"](0);
-              alert("Error while fetching report data");
-
-            case 12:
-              _context4.prev = 12;
-              this.loading = false;
-              return _context4.finish(12);
-
-            case 15:
-            case "end":
-              return _context4.stop();
-          }
-        }
-      }, null, this, [[0, 9, 12, 15]]);
-    }
-  }
-});
-
-/***/ }),
-
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/apps/report/ReportForm.vue?vue&type=script&lang=js&":
-/*!**********************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/apps/report/ReportForm.vue?vue&type=script&lang=js& ***!
-  \**********************************************************************************************************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _interface__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../interface */ "./resources/js/interface/index.js");
-
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-  name: "ReportForm",
-  data: function data() {
-    return {
-      apiLoading: true,
-      report: {},
-      patientList: [],
-      indicatorList: []
-    };
-  },
-  computed: {
-    patientOptions: function patientOptions() {
-      return this.patientList.map(function (patient) {
-        return {
-          value: patient.id,
-          text: patient.name
-        };
-      });
-    },
-    indicatorOptions: function indicatorOptions() {
-      return this.indicatorList.map(function (indicator) {
-        return {
-          value: indicator.id,
-          text: indicator.name
-        };
-      });
-    },
-    indicatorSteps: function indicatorSteps() {
-      var _this = this;
-
-      var indicator = this.indicatorList.find(function (indi) {
-        return indi.id === _this.report.indicator_id;
-      });
-      if (!indicator) return [];
-      return indicator.steps.map(function (step) {
-        return {
-          value: step.id,
-          text: step.label
-        };
-      });
-    }
-  },
-  props: {
-    form: {
-      type: Object,
-      "default": function _default() {
-        return {};
-      }
-    },
-    loading: {
-      type: Boolean,
-      "default": false
-    },
-    isEdit: {
-      type: Boolean,
-      "default": false
-    }
-  },
-  watch: {
-    form: {
-      immediate: true,
-      deep: true,
-      handler: function handler(form) {
-        this.report = form;
-      }
-    }
-  },
-  mounted: function mounted() {
-    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.async(function mounted$(_context) {
-      while (1) {
-        switch (_context.prev = _context.next) {
-          case 0:
-            this.fetchPatient();
-            this.fetchIndicator();
-
-          case 2:
-          case "end":
-            return _context.stop();
-        }
-      }
-    }, null, this);
-  },
-  methods: {
-    onSubmit: function onSubmit() {
-      this.$emit("submit", this.report);
-    },
-    stepChecked: function stepChecked(step_id) {
-      return this.report.steps_id.includes(step_id);
-    },
-    stepChange: function stepChange(val, step_id) {
-      if (val) {
-        this.report.steps_id.push(step_id);
-        return;
-      }
-
-      this.report.steps_id = this.report.steps_id.filter(function (id) {
-        return id !== step_id;
-      });
-    },
-    fetchPatient: function fetchPatient() {
-      var _ref, data;
-
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.async(function fetchPatient$(_context2) {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.async(function fetchData$(_context2) {
         while (1) {
           switch (_context2.prev = _context2.next) {
             case 0:
-              _context2.next = 2;
-              return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(_interface__WEBPACK_IMPORTED_MODULE_1__["default"].patient.list());
+              _context2.prev = 0;
+              this.loading = true;
+              _context2.next = 4;
+              return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(_interface__WEBPACK_IMPORTED_MODULE_3__["default"].report.list());
 
-            case 2:
+            case 4:
               _ref = _context2.sent;
               data = _ref.data;
-              this.patientList = data.data;
+              this.list = data.data;
+              _context2.next = 12;
+              break;
 
-            case 5:
+            case 9:
+              _context2.prev = 9;
+              _context2.t0 = _context2["catch"](0);
+              alert("Error while fetching report data");
+
+            case 12:
+              _context2.prev = 12;
+              this.loading = false;
+              return _context2.finish(12);
+
+            case 15:
             case "end":
               return _context2.stop();
           }
         }
-      }, null, this);
-    },
-    fetchIndicator: function fetchIndicator() {
-      var _ref2, data;
-
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.async(function fetchIndicator$(_context3) {
-        while (1) {
-          switch (_context3.prev = _context3.next) {
-            case 0:
-              _context3.next = 2;
-              return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(_interface__WEBPACK_IMPORTED_MODULE_1__["default"].indicators.list());
-
-            case 2:
-              _ref2 = _context3.sent;
-              data = _ref2.data;
-              this.indicatorList = data.data;
-
-            case 5:
-            case "end":
-              return _context3.stop();
-          }
-        }
-      }, null, this);
+      }, null, this, [[0, 9, 12, 15]]);
     }
   }
 });
@@ -3779,6 +3452,397 @@ __webpack_require__.r(__webpack_exports__);
             case 14:
             case "end":
               return _context.stop();
+          }
+        }
+      }, null, this, [[0, 8, 11, 14]]);
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/ReportForm.vue?vue&type=script&lang=js&":
+/*!*********************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/ReportForm.vue?vue&type=script&lang=js& ***!
+  \*********************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _interface__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../interface */ "./resources/js/interface/index.js");
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: "ReportForm",
+  data: function data() {
+    return {
+      apiLoading: true,
+      report: {},
+      patientList: [],
+      indicatorList: []
+    };
+  },
+  computed: {
+    patientOptions: function patientOptions() {
+      return this.patientList.map(function (patient) {
+        return {
+          value: patient.id,
+          text: patient.name
+        };
+      });
+    },
+    indicatorOptions: function indicatorOptions() {
+      return this.indicatorList.map(function (indicator) {
+        return {
+          value: indicator.id,
+          text: indicator.name
+        };
+      });
+    },
+    indicatorSteps: function indicatorSteps() {
+      var _this = this;
+
+      var indicator = this.indicatorList.find(function (indi) {
+        return indi.id === _this.report.indicator_id;
+      });
+      if (!indicator) return [];
+      return indicator.steps.map(function (step) {
+        return {
+          value: step.id,
+          text: step.label
+        };
+      });
+    }
+  },
+  props: {
+    form: {
+      type: Object,
+      "default": function _default() {
+        return {};
+      }
+    },
+    loading: {
+      type: Boolean,
+      "default": false
+    },
+    isEdit: {
+      type: Boolean,
+      "default": false
+    }
+  },
+  watch: {
+    form: {
+      immediate: true,
+      deep: true,
+      handler: function handler(form) {
+        this.report = form;
+      }
+    }
+  },
+  mounted: function mounted() {
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.async(function mounted$(_context) {
+      while (1) {
+        switch (_context.prev = _context.next) {
+          case 0:
+            this.fetchPatient();
+            this.fetchIndicator();
+
+          case 2:
+          case "end":
+            return _context.stop();
+        }
+      }
+    }, null, this);
+  },
+  methods: {
+    onSubmit: function onSubmit() {
+      this.$emit("submit", this.report);
+    },
+    stepChecked: function stepChecked(step_id) {
+      return this.report.steps_id.includes(step_id);
+    },
+    stepChange: function stepChange(val, step_id) {
+      if (val) {
+        this.report.steps_id.push(step_id);
+        return;
+      }
+
+      this.report.steps_id = this.report.steps_id.filter(function (id) {
+        return id !== step_id;
+      });
+    },
+    fetchPatient: function fetchPatient() {
+      var _ref, data;
+
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.async(function fetchPatient$(_context2) {
+        while (1) {
+          switch (_context2.prev = _context2.next) {
+            case 0:
+              _context2.next = 2;
+              return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(_interface__WEBPACK_IMPORTED_MODULE_1__["default"].patient.list());
+
+            case 2:
+              _ref = _context2.sent;
+              data = _ref.data;
+              this.patientList = data.data;
+
+            case 5:
+            case "end":
+              return _context2.stop();
+          }
+        }
+      }, null, this);
+    },
+    fetchIndicator: function fetchIndicator() {
+      var _ref2, data;
+
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.async(function fetchIndicator$(_context3) {
+        while (1) {
+          switch (_context3.prev = _context3.next) {
+            case 0:
+              _context3.next = 2;
+              return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(_interface__WEBPACK_IMPORTED_MODULE_1__["default"].indicators.list());
+
+            case 2:
+              _ref2 = _context3.sent;
+              data = _ref2.data;
+              this.indicatorList = data.data;
+
+            case 5:
+            case "end":
+              return _context3.stop();
+          }
+        }
+      }, null, this);
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/ReportTable.vue?vue&type=script&lang=js&":
+/*!**********************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/ReportTable.vue?vue&type=script&lang=js& ***!
+  \**********************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _ReportForm__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ReportForm */ "./resources/js/components/ReportForm.vue");
+/* harmony import */ var _Panel__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Panel */ "./resources/js/components/Panel.vue");
+/* harmony import */ var _interface__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../interface */ "./resources/js/interface/index.js");
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+var defaultData = {
+  patient_id: 0,
+  indicator_id: 0,
+  reported_at: '',
+  steps_id: []
+};
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: "ReportApp",
+  data: function data() {
+    return {
+      submitLoading: false,
+      dataEdit: {}
+    };
+  },
+  props: {
+    list: {
+      type: Array,
+      "default": function _default() {
+        return [];
+      }
+    },
+    loading: {
+      type: Boolean,
+      "default": false
+    }
+  },
+  computed: {
+    fields: function fields() {
+      return ["id", "patient", "indicator", "date", "status", "steps", "action"];
+    }
+  },
+  components: {
+    ReportForm: _ReportForm__WEBPACK_IMPORTED_MODULE_1__["default"],
+    Panel: _Panel__WEBPACK_IMPORTED_MODULE_2__["default"]
+  },
+  methods: {
+    edit: function edit(row) {
+      var item = row.item;
+      var data = {
+        id: item.id,
+        patient_id: item.patient_id,
+        indicator_id: item.indicator_id,
+        reported_at: item.reported_at,
+        steps_id: item.steps.filter(function (step) {
+          return step.status;
+        }).map(function (step) {
+          return step.indicator_step_id;
+        })
+      };
+      this.dataEdit = Object.assign({}, data);
+      this.$bvModal.show("modal-edit");
+    },
+    requestDelete: function requestDelete(row) {
+      var id, conf;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.async(function requestDelete$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              id = row.item.id;
+              conf = confirm("Delete report?");
+
+              if (conf) {
+                _context.next = 4;
+                break;
+              }
+
+              return _context.abrupt("return");
+
+            case 4:
+              _context.prev = 4;
+              _context.next = 7;
+              return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(_interface__WEBPACK_IMPORTED_MODULE_3__["default"].report["delete"](id));
+
+            case 7:
+              this.$emit('requestUpdate');
+              _context.next = 13;
+              break;
+
+            case 10:
+              _context.prev = 10;
+              _context.t0 = _context["catch"](4);
+              alert("Tidak berhasil menghapus indicator");
+
+            case 13:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, null, this, [[4, 10]]);
+    },
+    doEdit: function doEdit() {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.async(function doEdit$(_context2) {
+        while (1) {
+          switch (_context2.prev = _context2.next) {
+            case 0:
+              _context2.prev = 0;
+              this.submitLoading = true;
+              _context2.next = 4;
+              return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(_interface__WEBPACK_IMPORTED_MODULE_3__["default"].report.update(this.dataEdit.id, this.dataEdit));
+
+            case 4:
+              this.$bvModal.hide("modal-edit");
+              this.$emit('requestUpdate');
+              _context2.next = 11;
+              break;
+
+            case 8:
+              _context2.prev = 8;
+              _context2.t0 = _context2["catch"](0);
+              alert(_context2.t0.response.data.message);
+
+            case 11:
+              _context2.prev = 11;
+              this.submitLoading = false;
+              return _context2.finish(11);
+
+            case 14:
+            case "end":
+              return _context2.stop();
           }
         }
       }, null, this, [[0, 8, 11, 14]]);
@@ -38814,165 +38878,10 @@ var render = function() {
         [_vm._v("Create new report")]
       ),
       _vm._v(" "),
-      _c(
-        "panel",
-        { attrs: { title: "Report" } },
-        [
-          _vm.loading
-            ? _c("span", [_vm._v("Loading...")])
-            : _c("b-table", {
-                attrs: {
-                  striped: "",
-                  hover: "",
-                  items: _vm.list,
-                  fields: _vm.fields
-                },
-                scopedSlots: _vm._u([
-                  {
-                    key: "cell(patient)",
-                    fn: function(row) {
-                      return [
-                        _vm._v(
-                          "\n        " +
-                            _vm._s(row.item.patient.name) +
-                            "\n      "
-                        )
-                      ]
-                    }
-                  },
-                  {
-                    key: "cell(indicator)",
-                    fn: function(row) {
-                      return [
-                        _vm._v(
-                          "\n        " +
-                            _vm._s(row.item.indicator.name) +
-                            "\n      "
-                        )
-                      ]
-                    }
-                  },
-                  {
-                    key: "cell(date)",
-                    fn: function(row) {
-                      return [
-                        _vm._v(
-                          "\n        " +
-                            _vm._s(row.item.reported_at) +
-                            "\n      "
-                        )
-                      ]
-                    }
-                  },
-                  {
-                    key: "cell(status)",
-                    fn: function(row) {
-                      return [
-                        _c(
-                          "div",
-                          [
-                            row.item.status
-                              ? _c(
-                                  "b-badge",
-                                  {
-                                    staticClass: "bg-success",
-                                    attrs: { variant: "success" }
-                                  },
-                                  [_vm._v("Complete")]
-                                )
-                              : _c(
-                                  "b-badge",
-                                  {
-                                    staticClass: "bg-warning",
-                                    attrs: { variant: "warning" }
-                                  },
-                                  [_vm._v("Incomplete")]
-                                )
-                          ],
-                          1
-                        )
-                      ]
-                    }
-                  },
-                  {
-                    key: "cell(steps)",
-                    fn: function(row) {
-                      return [
-                        _vm._v(
-                          "\n        " +
-                            _vm._s(
-                              row.item.steps.filter(function(step) {
-                                return step.status
-                              }).length
-                            ) +
-                            " / " +
-                            _vm._s(row.item.steps.length) +
-                            "\n      "
-                        )
-                      ]
-                    }
-                  },
-                  {
-                    key: "cell(action)",
-                    fn: function(row) {
-                      return [
-                        _c(
-                          "div",
-                          [
-                            _c(
-                              "b-button",
-                              {
-                                on: {
-                                  click: function($event) {
-                                    return _vm.edit(row)
-                                  }
-                                }
-                              },
-                              [_vm._v("Edit")]
-                            ),
-                            _vm._v(" "),
-                            _c(
-                              "b-button",
-                              {
-                                staticClass: "btn btn-danger",
-                                attrs: { size: "sm" },
-                                on: {
-                                  click: function($event) {
-                                    return _vm.requestDelete(row)
-                                  }
-                                }
-                              },
-                              [_vm._v("Delete")]
-                            )
-                          ],
-                          1
-                        )
-                      ]
-                    }
-                  }
-                ])
-              })
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _c(
-        "b-modal",
-        {
-          attrs: { id: "modal-edit", title: "Edit Report", "hide-footer": "" }
-        },
-        [
-          _c("report-form", {
-            attrs: {
-              form: _vm.dataEdit,
-              isEdit: "",
-              loading: _vm.submitLoading
-            },
-            on: { submit: _vm.doEdit }
-          })
-        ],
-        1
-      ),
+      _c("report-table", {
+        attrs: { list: _vm.list, loading: _vm.loading },
+        on: { requestUpdate: _vm.fetchData }
+      }),
       _vm._v(" "),
       _c(
         "b-modal",
@@ -38990,140 +38899,6 @@ var render = function() {
           })
         ],
         1
-      )
-    ],
-    1
-  )
-}
-var staticRenderFns = []
-render._withStripped = true
-
-
-
-/***/ }),
-
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/apps/report/ReportForm.vue?vue&type=template&id=40ea7694&":
-/*!**************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/apps/report/ReportForm.vue?vue&type=template&id=40ea7694& ***!
-  \**************************************************************************************************************************************************************************************************************/
-/*! exports provided: render, staticRenderFns */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c(
-    "b-form",
-    {
-      on: {
-        submit: function($event) {
-          $event.preventDefault()
-          return _vm.onSubmit($event)
-        }
-      }
-    },
-    [
-      _c(
-        "b-form-group",
-        { attrs: { label: "Date" } },
-        [
-          _c("b-form-input", {
-            attrs: {
-              disabled: _vm.isEdit,
-              type: "date",
-              required: "",
-              placeholder: "Reported date..."
-            },
-            model: {
-              value: _vm.report.reported_at,
-              callback: function($$v) {
-                _vm.$set(_vm.report, "reported_at", $$v)
-              },
-              expression: "report.reported_at"
-            }
-          })
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _c(
-        "b-form-group",
-        { attrs: { label: "Patient" } },
-        [
-          _c("b-form-select", {
-            attrs: { disabled: _vm.isEdit, options: _vm.patientOptions },
-            model: {
-              value: _vm.report.patient_id,
-              callback: function($$v) {
-                _vm.$set(_vm.report, "patient_id", $$v)
-              },
-              expression: "report.patient_id"
-            }
-          })
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _c(
-        "b-form-group",
-        { attrs: { label: "Indicator" } },
-        [
-          _c("b-form-select", {
-            attrs: { disabled: _vm.isEdit, options: _vm.indicatorOptions },
-            model: {
-              value: _vm.report.indicator_id,
-              callback: function($$v) {
-                _vm.$set(_vm.report, "indicator_id", $$v)
-              },
-              expression: "report.indicator_id"
-            }
-          })
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _vm.indicatorSteps
-        ? _c(
-            "div",
-            [
-              _c(
-                "b-form-group",
-                { attrs: { label: "Indicator Step" } },
-                _vm._l(_vm.indicatorSteps, function(step) {
-                  return _c(
-                    "b-form-checkbox",
-                    {
-                      key: step.value,
-                      staticClass: "form-checkbox",
-                      attrs: { checked: _vm.stepChecked(step.value) },
-                      on: {
-                        change: function(value) {
-                          return _vm.stepChange(value, step.value)
-                        }
-                      }
-                    },
-                    [_vm._v(_vm._s(step.text))]
-                  )
-                }),
-                1
-              )
-            ],
-            1
-          )
-        : _vm._e(),
-      _vm._v(" "),
-      _c(
-        "b-button",
-        {
-          staticClass: "btn btn-primary",
-          attrs: { type: "submit", disabled: _vm.loading }
-        },
-        [_vm._v(_vm._s(_vm.loading ? "Loading..." : "Submit"))]
       )
     ],
     1
@@ -39392,6 +39167,328 @@ var render = function() {
         [
           _c("patient-form", {
             attrs: { form: _vm.dataEdit, loading: _vm.submitLoading },
+            on: { submit: _vm.doEdit }
+          })
+        ],
+        1
+      )
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/ReportForm.vue?vue&type=template&id=3ec5fcc3&":
+/*!*************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/ReportForm.vue?vue&type=template&id=3ec5fcc3& ***!
+  \*************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "b-form",
+    {
+      on: {
+        submit: function($event) {
+          $event.preventDefault()
+          return _vm.onSubmit($event)
+        }
+      }
+    },
+    [
+      _c(
+        "b-form-group",
+        { attrs: { label: "Date" } },
+        [
+          _c("b-form-input", {
+            attrs: {
+              disabled: _vm.isEdit,
+              type: "date",
+              required: "",
+              placeholder: "Reported date..."
+            },
+            model: {
+              value: _vm.report.reported_at,
+              callback: function($$v) {
+                _vm.$set(_vm.report, "reported_at", $$v)
+              },
+              expression: "report.reported_at"
+            }
+          })
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "b-form-group",
+        { attrs: { label: "Patient" } },
+        [
+          _c("b-form-select", {
+            attrs: { disabled: _vm.isEdit, options: _vm.patientOptions },
+            model: {
+              value: _vm.report.patient_id,
+              callback: function($$v) {
+                _vm.$set(_vm.report, "patient_id", $$v)
+              },
+              expression: "report.patient_id"
+            }
+          })
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "b-form-group",
+        { attrs: { label: "Indicator" } },
+        [
+          _c("b-form-select", {
+            attrs: { disabled: _vm.isEdit, options: _vm.indicatorOptions },
+            model: {
+              value: _vm.report.indicator_id,
+              callback: function($$v) {
+                _vm.$set(_vm.report, "indicator_id", $$v)
+              },
+              expression: "report.indicator_id"
+            }
+          })
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _vm.indicatorSteps
+        ? _c(
+            "div",
+            [
+              _c(
+                "b-form-group",
+                { attrs: { label: "Indicator Step" } },
+                _vm._l(_vm.indicatorSteps, function(step) {
+                  return _c(
+                    "b-form-checkbox",
+                    {
+                      key: step.value,
+                      staticClass: "form-checkbox",
+                      attrs: { checked: _vm.stepChecked(step.value) },
+                      on: {
+                        change: function(value) {
+                          return _vm.stepChange(value, step.value)
+                        }
+                      }
+                    },
+                    [_vm._v(_vm._s(step.text))]
+                  )
+                }),
+                1
+              )
+            ],
+            1
+          )
+        : _vm._e(),
+      _vm._v(" "),
+      _c(
+        "b-button",
+        {
+          staticClass: "btn btn-primary",
+          attrs: { type: "submit", disabled: _vm.loading }
+        },
+        [_vm._v(_vm._s(_vm.loading ? "Loading..." : "Submit"))]
+      )
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/ReportTable.vue?vue&type=template&id=8b95f642&":
+/*!**************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/ReportTable.vue?vue&type=template&id=8b95f642& ***!
+  \**************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    [
+      _c(
+        "panel",
+        { attrs: { title: "Report" } },
+        [
+          _vm.loading
+            ? _c("span", [_vm._v("Loading...")])
+            : _c("b-table", {
+                attrs: {
+                  striped: "",
+                  hover: "",
+                  items: _vm.list,
+                  fields: _vm.fields
+                },
+                scopedSlots: _vm._u([
+                  {
+                    key: "cell(patient)",
+                    fn: function(row) {
+                      return [
+                        _vm._v(
+                          "\n        " +
+                            _vm._s(row.item.patient.name) +
+                            "\n      "
+                        )
+                      ]
+                    }
+                  },
+                  {
+                    key: "cell(indicator)",
+                    fn: function(row) {
+                      return [
+                        _vm._v(
+                          "\n        " +
+                            _vm._s(row.item.indicator.name) +
+                            "\n      "
+                        )
+                      ]
+                    }
+                  },
+                  {
+                    key: "cell(date)",
+                    fn: function(row) {
+                      return [
+                        _vm._v(
+                          "\n        " +
+                            _vm._s(row.item.reported_at) +
+                            "\n      "
+                        )
+                      ]
+                    }
+                  },
+                  {
+                    key: "cell(status)",
+                    fn: function(row) {
+                      return [
+                        _c(
+                          "div",
+                          [
+                            row.item.status
+                              ? _c(
+                                  "b-badge",
+                                  {
+                                    staticClass: "bg-success",
+                                    attrs: { variant: "success" }
+                                  },
+                                  [_vm._v("Complete")]
+                                )
+                              : _c(
+                                  "b-badge",
+                                  {
+                                    staticClass: "bg-warning",
+                                    attrs: { variant: "warning" }
+                                  },
+                                  [_vm._v("Incomplete")]
+                                )
+                          ],
+                          1
+                        )
+                      ]
+                    }
+                  },
+                  {
+                    key: "cell(steps)",
+                    fn: function(row) {
+                      return [
+                        _vm._v(
+                          "\n        " +
+                            _vm._s(
+                              row.item.steps.filter(function(step) {
+                                return step.status
+                              }).length
+                            ) +
+                            " / " +
+                            _vm._s(row.item.steps.length) +
+                            "\n      "
+                        )
+                      ]
+                    }
+                  },
+                  {
+                    key: "cell(action)",
+                    fn: function(row) {
+                      return [
+                        _c(
+                          "div",
+                          [
+                            _c(
+                              "b-button",
+                              {
+                                on: {
+                                  click: function($event) {
+                                    return _vm.edit(row)
+                                  }
+                                }
+                              },
+                              [_vm._v("Edit")]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "b-button",
+                              {
+                                staticClass: "btn btn-danger",
+                                attrs: { size: "sm" },
+                                on: {
+                                  click: function($event) {
+                                    return _vm.requestDelete(row)
+                                  }
+                                }
+                              },
+                              [_vm._v("Delete")]
+                            )
+                          ],
+                          1
+                        )
+                      ]
+                    }
+                  }
+                ])
+              })
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "b-modal",
+        {
+          attrs: { id: "modal-edit", title: "Edit Report", "hide-footer": "" }
+        },
+        [
+          _c("report-form", {
+            attrs: {
+              form: _vm.dataEdit,
+              isEdit: "",
+              loading: _vm.submitLoading
+            },
             on: { submit: _vm.doEdit }
           })
         ],
@@ -56645,75 +56742,6 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/apps/report/ReportForm.vue":
-/*!*************************************************!*\
-  !*** ./resources/js/apps/report/ReportForm.vue ***!
-  \*************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _ReportForm_vue_vue_type_template_id_40ea7694___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ReportForm.vue?vue&type=template&id=40ea7694& */ "./resources/js/apps/report/ReportForm.vue?vue&type=template&id=40ea7694&");
-/* harmony import */ var _ReportForm_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ReportForm.vue?vue&type=script&lang=js& */ "./resources/js/apps/report/ReportForm.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
-
-
-
-
-
-/* normalize component */
-
-var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  _ReportForm_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _ReportForm_vue_vue_type_template_id_40ea7694___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _ReportForm_vue_vue_type_template_id_40ea7694___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
-  false,
-  null,
-  null,
-  null
-  
-)
-
-/* hot reload */
-if (false) { var api; }
-component.options.__file = "resources/js/apps/report/ReportForm.vue"
-/* harmony default export */ __webpack_exports__["default"] = (component.exports);
-
-/***/ }),
-
-/***/ "./resources/js/apps/report/ReportForm.vue?vue&type=script&lang=js&":
-/*!**************************************************************************!*\
-  !*** ./resources/js/apps/report/ReportForm.vue?vue&type=script&lang=js& ***!
-  \**************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ReportForm_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./ReportForm.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/apps/report/ReportForm.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ReportForm_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
-
-/***/ }),
-
-/***/ "./resources/js/apps/report/ReportForm.vue?vue&type=template&id=40ea7694&":
-/*!********************************************************************************!*\
-  !*** ./resources/js/apps/report/ReportForm.vue?vue&type=template&id=40ea7694& ***!
-  \********************************************************************************/
-/*! exports provided: render, staticRenderFns */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ReportForm_vue_vue_type_template_id_40ea7694___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./ReportForm.vue?vue&type=template&id=40ea7694& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/apps/report/ReportForm.vue?vue&type=template&id=40ea7694&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ReportForm_vue_vue_type_template_id_40ea7694___WEBPACK_IMPORTED_MODULE_0__["render"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ReportForm_vue_vue_type_template_id_40ea7694___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
-
-
-
-/***/ }),
-
 /***/ "./resources/js/apps/report/index.js":
 /*!*******************************************!*\
   !*** ./resources/js/apps/report/index.js ***!
@@ -56941,6 +56969,144 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_PatientTable_vue_vue_type_template_id_088ae334___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_PatientTable_vue_vue_type_template_id_088ae334___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/ReportForm.vue":
+/*!************************************************!*\
+  !*** ./resources/js/components/ReportForm.vue ***!
+  \************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _ReportForm_vue_vue_type_template_id_3ec5fcc3___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ReportForm.vue?vue&type=template&id=3ec5fcc3& */ "./resources/js/components/ReportForm.vue?vue&type=template&id=3ec5fcc3&");
+/* harmony import */ var _ReportForm_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ReportForm.vue?vue&type=script&lang=js& */ "./resources/js/components/ReportForm.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _ReportForm_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _ReportForm_vue_vue_type_template_id_3ec5fcc3___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _ReportForm_vue_vue_type_template_id_3ec5fcc3___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/ReportForm.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/ReportForm.vue?vue&type=script&lang=js&":
+/*!*************************************************************************!*\
+  !*** ./resources/js/components/ReportForm.vue?vue&type=script&lang=js& ***!
+  \*************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ReportForm_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./ReportForm.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/ReportForm.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ReportForm_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/ReportForm.vue?vue&type=template&id=3ec5fcc3&":
+/*!*******************************************************************************!*\
+  !*** ./resources/js/components/ReportForm.vue?vue&type=template&id=3ec5fcc3& ***!
+  \*******************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ReportForm_vue_vue_type_template_id_3ec5fcc3___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./ReportForm.vue?vue&type=template&id=3ec5fcc3& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/ReportForm.vue?vue&type=template&id=3ec5fcc3&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ReportForm_vue_vue_type_template_id_3ec5fcc3___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ReportForm_vue_vue_type_template_id_3ec5fcc3___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/ReportTable.vue":
+/*!*************************************************!*\
+  !*** ./resources/js/components/ReportTable.vue ***!
+  \*************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _ReportTable_vue_vue_type_template_id_8b95f642___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ReportTable.vue?vue&type=template&id=8b95f642& */ "./resources/js/components/ReportTable.vue?vue&type=template&id=8b95f642&");
+/* harmony import */ var _ReportTable_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ReportTable.vue?vue&type=script&lang=js& */ "./resources/js/components/ReportTable.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _ReportTable_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _ReportTable_vue_vue_type_template_id_8b95f642___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _ReportTable_vue_vue_type_template_id_8b95f642___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/ReportTable.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/ReportTable.vue?vue&type=script&lang=js&":
+/*!**************************************************************************!*\
+  !*** ./resources/js/components/ReportTable.vue?vue&type=script&lang=js& ***!
+  \**************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ReportTable_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./ReportTable.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/ReportTable.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ReportTable_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/ReportTable.vue?vue&type=template&id=8b95f642&":
+/*!********************************************************************************!*\
+  !*** ./resources/js/components/ReportTable.vue?vue&type=template&id=8b95f642& ***!
+  \********************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ReportTable_vue_vue_type_template_id_8b95f642___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./ReportTable.vue?vue&type=template&id=8b95f642& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/ReportTable.vue?vue&type=template&id=8b95f642&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ReportTable_vue_vue_type_template_id_8b95f642___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ReportTable_vue_vue_type_template_id_8b95f642___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 
