@@ -24,35 +24,19 @@
       </table>
     </panel>
 
-    <panel v-if="!loading" title="History">
-      <b-table striped hover :items="patient.history" :fields="fields">
-
-        <template v-slot:cell(indicator)="row">
-          {{ row.item.indicator.name }}
-        </template>
-
-        <template v-slot:cell(date)="row">
-          {{ row.item.reported_at }}
-        </template>
-
-        <template v-slot:cell(status)="row">
-          <div>
-            <b-badge v-if="row.item.status" variant="success" class="bg-success">Complete</b-badge>
-            <b-badge v-else variant="warning" class="bg-warning">Incomplete</b-badge>
-          </div>
-        </template>
-
-        <template v-slot:cell(steps)="row">
-          {{ row.item.steps.filter(step => step.status).length }} / {{ row.item.steps.length }}
-        </template>
-      </b-table>
-    </panel>
+    <report-table
+      v-if="!loading"
+      :list="patient.history"
+      @requestUpdate="fetchData"
+    >
+    </report-table>
 
   </div>
 </template>
 
 <script>
 import Panel from "../../components/Panel";
+import ReportTable from '../../components/ReportTable';
 import API from "../../interface";
 
 export default {
@@ -66,14 +50,9 @@ export default {
     }
   },
 
-  computed: {
-    fields() {
-      return ["id", "indicator", "date", "status", "steps"];
-    }
-  },
-
   components: {
-    Panel
+    Panel,
+    ReportTable
   },
 
   mounted() {

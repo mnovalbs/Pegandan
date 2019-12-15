@@ -2784,7 +2784,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _components_Panel__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../components/Panel */ "./resources/js/components/Panel.vue");
-/* harmony import */ var _interface__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../interface */ "./resources/js/interface/index.js");
+/* harmony import */ var _components_ReportTable__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../components/ReportTable */ "./resources/js/components/ReportTable.vue");
+/* harmony import */ var _interface__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../interface */ "./resources/js/interface/index.js");
 
 //
 //
@@ -2822,23 +2823,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2850,13 +2835,9 @@ __webpack_require__.r(__webpack_exports__);
       patient: {}
     };
   },
-  computed: {
-    fields: function fields() {
-      return ["id", "indicator", "date", "status", "steps"];
-    }
-  },
   components: {
-    Panel: _components_Panel__WEBPACK_IMPORTED_MODULE_1__["default"]
+    Panel: _components_Panel__WEBPACK_IMPORTED_MODULE_1__["default"],
+    ReportTable: _components_ReportTable__WEBPACK_IMPORTED_MODULE_2__["default"]
   },
   mounted: function mounted() {
     this.id = this.$route.params.id;
@@ -2871,7 +2852,7 @@ __webpack_require__.r(__webpack_exports__);
           switch (_context.prev = _context.next) {
             case 0:
               _context.next = 2;
-              return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(_interface__WEBPACK_IMPORTED_MODULE_2__["default"].patient.detail(this.id));
+              return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(_interface__WEBPACK_IMPORTED_MODULE_3__["default"].patient.detail(this.id));
 
             case 2:
               _ref = _context.sent;
@@ -38677,100 +38658,10 @@ var render = function() {
         : _vm._e(),
       _vm._v(" "),
       !_vm.loading
-        ? _c(
-            "panel",
-            { attrs: { title: "History" } },
-            [
-              _c("b-table", {
-                attrs: {
-                  striped: "",
-                  hover: "",
-                  items: _vm.patient.history,
-                  fields: _vm.fields
-                },
-                scopedSlots: _vm._u(
-                  [
-                    {
-                      key: "cell(indicator)",
-                      fn: function(row) {
-                        return [
-                          _vm._v(
-                            "\n        " +
-                              _vm._s(row.item.indicator.name) +
-                              "\n      "
-                          )
-                        ]
-                      }
-                    },
-                    {
-                      key: "cell(date)",
-                      fn: function(row) {
-                        return [
-                          _vm._v(
-                            "\n        " +
-                              _vm._s(row.item.reported_at) +
-                              "\n      "
-                          )
-                        ]
-                      }
-                    },
-                    {
-                      key: "cell(status)",
-                      fn: function(row) {
-                        return [
-                          _c(
-                            "div",
-                            [
-                              row.item.status
-                                ? _c(
-                                    "b-badge",
-                                    {
-                                      staticClass: "bg-success",
-                                      attrs: { variant: "success" }
-                                    },
-                                    [_vm._v("Complete")]
-                                  )
-                                : _c(
-                                    "b-badge",
-                                    {
-                                      staticClass: "bg-warning",
-                                      attrs: { variant: "warning" }
-                                    },
-                                    [_vm._v("Incomplete")]
-                                  )
-                            ],
-                            1
-                          )
-                        ]
-                      }
-                    },
-                    {
-                      key: "cell(steps)",
-                      fn: function(row) {
-                        return [
-                          _vm._v(
-                            "\n        " +
-                              _vm._s(
-                                row.item.steps.filter(function(step) {
-                                  return step.status
-                                }).length
-                              ) +
-                              " / " +
-                              _vm._s(row.item.steps.length) +
-                              "\n      "
-                          )
-                        ]
-                      }
-                    }
-                  ],
-                  null,
-                  false,
-                  2968765804
-                )
-              })
-            ],
-            1
-          )
+        ? _c("report-table", {
+            attrs: { list: _vm.patient.history },
+            on: { requestUpdate: _vm.fetchData }
+          })
         : _vm._e()
     ],
     1

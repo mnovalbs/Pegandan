@@ -94,6 +94,7 @@ class PatientController extends Controller
 
         foreach($patient->history as $history)
         {
+            $history->patient;
             $history->indicator;
             $history->steps;
         }
