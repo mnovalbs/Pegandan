@@ -25,6 +25,7 @@ class IndicatorController extends Controller
 
         foreach($indicator->report as $report) {
             $report->patient;
+            $report->patient->kelurahan;
             $report->indicator;
             $report->steps;
         }
