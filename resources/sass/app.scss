@@ -2,8 +2,8 @@
   opacity: 1 !important;
 
   .modal-dialog {
-    margin-top: 100px;
-    // top: 50%;
+    margin-top: 10%;
+    // top: calc(50% - 100px);
     // transform: translateY(-50%) !important;
   }
 }

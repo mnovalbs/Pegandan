@@ -27,6 +27,7 @@ export default {
   report: {
     list: () => axios.get(apiUrl('/report')),
     create: data => axios.post(apiUrl(`/report`), data),
-    delete: id => axios.delete(apiUrl(`/report/${id}`))
+    delete: id => axios.delete(apiUrl(`/report/${id}`)),
+    update: (id, data) => axios.patch(apiUrl(`/report/${id}`), data)
   }
 }

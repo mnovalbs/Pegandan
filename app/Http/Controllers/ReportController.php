@@ -36,14 +36,25 @@ class ReportController extends Controller
         $report->reported_at = $reported_at;
         $report->save();
 
-        foreach($steps['steps'] as $step)
-        {
-            $report_step = new ReportStep;
-            $report_step->report_id = $report->id;
-            $report_step->indicator_step_id = $step['id'];
-            $report_step->status = $step['status'];
-            $report_step->save();
-        }
+        $this->update_report_step($report->id, $steps['steps']);
+
+        $report->steps = $steps['steps'];
+
+        return response()->api(201, $report);
+    }
+
+    public function update(Request $request, $report_id)
+    {
+        $report = Report::find($report_id);
+        $steps_id = $request->input('steps_id');
+
+        $steps = $this->generate_steps_status($report->indicator_id, $steps_id);
+
+        # update report
+        $report->status = $steps['status'];
+        $report->save();
+
+        $this->update_report_step($report->id, $steps['steps'], true);
 
         $report->steps = $steps['steps'];
 
@@ -56,6 +67,40 @@ class ReportController extends Controller
         $indicator->delete();
 
         return response()->api(200, 'ok');
+    }
+
+    private function report_step_exists($report_id, $indicator_step_id)
+    {
+        $report_step = ReportStep::where('report_id', $report_id)
+                                 ->where('indicator_step_id', $indicator_step_id);
+
+        return $report_step;
+    }
+
+    private function remove_report_step($report_step)
+    {
+        if (!empty($report_step))
+        {
+            $report_step->delete();
+        }
+    }
+
+    private function update_report_step($report_id, $steps, $is_edit = false)
+    {
+        foreach($steps as $step)
+        {
+            if ($is_edit)
+            {
+                $exists_report_step = $this->report_step_exists($report_id, $step['id']);
+                $this->remove_report_step($exists_report_step);
+            }
+
+            $report_step = new ReportStep;
+            $report_step->report_id = $report_id;
+            $report_step->indicator_step_id = $step['id'];
+            $report_step->status = $step['status'];
+            $report_step->save();
+        }
     }
 
     private function generate_steps_status($indicator_id, $steps_id = [])

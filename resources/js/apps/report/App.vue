@@ -32,16 +32,19 @@
         </template>
 
         <template v-slot:cell(action)="row">
-          <b-button size="sm" @click="requestDelete(row)" class="btn btn-danger">Delete</b-button>
+          <div>
+            <b-button @click="edit(row)">Edit</b-button>
+            <b-button size="sm" @click="requestDelete(row)" class="btn btn-danger">Delete</b-button>
+          </div>
         </template>
       </b-table>
     </panel>
 
-    <b-modal id="modal-edit" title="Edit Patient" hide-footer>
-      <report-form :form="dataEdit" :loading="submitLoading" @submit="doEdit"></report-form>
+    <b-modal id="modal-edit" title="Edit Report" hide-footer>
+      <report-form :form="dataEdit" isEdit :loading="submitLoading" @submit="doEdit"></report-form>
     </b-modal>
 
-    <b-modal id="modal-create" title="Create new Patient" hide-footer>
+    <b-modal id="modal-create" title="Create new Report" hide-footer>
       <report-form :form="dataAdd" :loading="submitLoading" @submit="doCreate"></report-form>
     </b-modal>
   </div>
@@ -90,12 +93,17 @@ export default {
 
   methods: {
     edit(row) {
-      const { id } = row.item;
-      const data = this.list.find(l => l.id === id);
-      console.log(data);
+      const { item } = row;
+      const data = {
+        id: item.id,
+        patient_id: item.patient_id,
+        indicator_id: item.indicator_id,
+        reported_at: item.reported_at,
+        steps_id: item.steps.filter(step => step.status).map(step => step.indicator_step_id)
+      }
 
-      // this.dataEdit = Object.assign({}, data);
-      // this.$bvModal.show("modal-edit");
+      this.dataEdit = Object.assign({}, data);
+      this.$bvModal.show("modal-edit");
     },
 
     async requestDelete(row) {
@@ -113,7 +121,7 @@ export default {
     async doEdit() {
       try {
         this.submitLoading = true;
-        await API.patient.update(this.dataEdit.id, this.dataEdit);
+        await API.report.update(this.dataEdit.id, this.dataEdit);
         this.$bvModal.hide("modal-edit");
         this.fetchData();
       } catch (e) {

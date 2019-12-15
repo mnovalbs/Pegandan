@@ -21,7 +21,7 @@ Route::get('/report', 'ReportController@list');
 Route::post('/report', 'ReportController@create');
 Route::delete('/report/{id}', 'ReportController@delete');
 // Route::get('/indicator/{id}', 'IndicatorController@show');
-// Route::patch('/indicator/{id}', 'IndicatorController@update');
+Route::patch('/report/{id}', 'ReportController@update');
 
 Route::get('/indicator', 'IndicatorController@index');
 Route::post('/indicator', 'IndicatorController@create');

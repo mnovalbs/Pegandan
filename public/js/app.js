@@ -2821,6 +2821,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 
 
 
@@ -2855,12 +2858,20 @@ var defaultData = {
   },
   methods: {
     edit: function edit(row) {
-      var id = row.item.id;
-      var data = this.list.find(function (l) {
-        return l.id === id;
-      });
-      console.log(data); // this.dataEdit = Object.assign({}, data);
-      // this.$bvModal.show("modal-edit");
+      var item = row.item;
+      var data = {
+        id: item.id,
+        patient_id: item.patient_id,
+        indicator_id: item.indicator_id,
+        reported_at: item.reported_at,
+        steps_id: item.steps.filter(function (step) {
+          return step.status;
+        }).map(function (step) {
+          return step.indicator_step_id;
+        })
+      };
+      this.dataEdit = Object.assign({}, data);
+      this.$bvModal.show("modal-edit");
     },
     requestDelete: function requestDelete(row) {
       var id, conf;
@@ -2908,7 +2919,7 @@ var defaultData = {
               _context2.prev = 0;
               this.submitLoading = true;
               _context2.next = 4;
-              return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(_interface__WEBPACK_IMPORTED_MODULE_3__["default"].patient.update(this.dataEdit.id, this.dataEdit));
+              return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(_interface__WEBPACK_IMPORTED_MODULE_3__["default"].report.update(this.dataEdit.id, this.dataEdit));
 
             case 4:
               this.$bvModal.hide("modal-edit");
@@ -3060,11 +3071,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "ReportForm",
   data: function data() {
     return {
+      apiLoading: true,
       report: {},
       patientList: [],
       indicatorList: []
@@ -3112,6 +3125,10 @@ __webpack_require__.r(__webpack_exports__);
     loading: {
       type: Boolean,
       "default": false
+    },
+    isEdit: {
+      type: Boolean,
+      "default": false
     }
   },
   watch: {
@@ -3124,8 +3141,19 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   mounted: function mounted() {
-    this.fetchPatient();
-    this.fetchIndicator();
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.async(function mounted$(_context) {
+      while (1) {
+        switch (_context.prev = _context.next) {
+          case 0:
+            this.fetchPatient();
+            this.fetchIndicator();
+
+          case 2:
+          case "end":
+            return _context.stop();
+        }
+      }
+    }, null, this);
   },
   methods: {
     onSubmit: function onSubmit() {
@@ -3147,21 +3175,21 @@ __webpack_require__.r(__webpack_exports__);
     fetchPatient: function fetchPatient() {
       var _ref, data;
 
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.async(function fetchPatient$(_context) {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.async(function fetchPatient$(_context2) {
         while (1) {
-          switch (_context.prev = _context.next) {
+          switch (_context2.prev = _context2.next) {
             case 0:
-              _context.next = 2;
+              _context2.next = 2;
               return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(_interface__WEBPACK_IMPORTED_MODULE_1__["default"].patient.list());
 
             case 2:
-              _ref = _context.sent;
+              _ref = _context2.sent;
               data = _ref.data;
               this.patientList = data.data;
 
             case 5:
             case "end":
-              return _context.stop();
+              return _context2.stop();
           }
         }
       }, null, this);
@@ -3169,21 +3197,21 @@ __webpack_require__.r(__webpack_exports__);
     fetchIndicator: function fetchIndicator() {
       var _ref2, data;
 
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.async(function fetchIndicator$(_context2) {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.async(function fetchIndicator$(_context3) {
         while (1) {
-          switch (_context2.prev = _context2.next) {
+          switch (_context3.prev = _context3.next) {
             case 0:
-              _context2.next = 2;
+              _context3.next = 2;
               return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(_interface__WEBPACK_IMPORTED_MODULE_1__["default"].indicators.list());
 
             case 2:
-              _ref2 = _context2.sent;
+              _ref2 = _context3.sent;
               data = _ref2.data;
               this.indicatorList = data.data;
 
             case 5:
             case "end":
-              return _context2.stop();
+              return _context3.stop();
           }
         }
       }, null, this);
@@ -38023,17 +38051,35 @@ var render = function() {
                     fn: function(row) {
                       return [
                         _c(
-                          "b-button",
-                          {
-                            staticClass: "btn btn-danger",
-                            attrs: { size: "sm" },
-                            on: {
-                              click: function($event) {
-                                return _vm.requestDelete(row)
-                              }
-                            }
-                          },
-                          [_vm._v("Delete")]
+                          "div",
+                          [
+                            _c(
+                              "b-button",
+                              {
+                                on: {
+                                  click: function($event) {
+                                    return _vm.edit(row)
+                                  }
+                                }
+                              },
+                              [_vm._v("Edit")]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "b-button",
+                              {
+                                staticClass: "btn btn-danger",
+                                attrs: { size: "sm" },
+                                on: {
+                                  click: function($event) {
+                                    return _vm.requestDelete(row)
+                                  }
+                                }
+                              },
+                              [_vm._v("Delete")]
+                            )
+                          ],
+                          1
                         )
                       ]
                     }
@@ -38047,11 +38093,15 @@ var render = function() {
       _c(
         "b-modal",
         {
-          attrs: { id: "modal-edit", title: "Edit Patient", "hide-footer": "" }
+          attrs: { id: "modal-edit", title: "Edit Report", "hide-footer": "" }
         },
         [
           _c("report-form", {
-            attrs: { form: _vm.dataEdit, loading: _vm.submitLoading },
+            attrs: {
+              form: _vm.dataEdit,
+              isEdit: "",
+              loading: _vm.submitLoading
+            },
             on: { submit: _vm.doEdit }
           })
         ],
@@ -38063,7 +38113,7 @@ var render = function() {
         {
           attrs: {
             id: "modal-create",
-            title: "Create new Patient",
+            title: "Create new Report",
             "hide-footer": ""
           }
         },
@@ -38118,6 +38168,7 @@ var render = function() {
         [
           _c("b-form-input", {
             attrs: {
+              disabled: _vm.isEdit,
               type: "date",
               required: "",
               placeholder: "Reported date..."
@@ -38139,7 +38190,7 @@ var render = function() {
         { attrs: { label: "Patient" } },
         [
           _c("b-form-select", {
-            attrs: { options: _vm.patientOptions },
+            attrs: { disabled: _vm.isEdit, options: _vm.patientOptions },
             model: {
               value: _vm.report.patient_id,
               callback: function($$v) {
@@ -38157,7 +38208,7 @@ var render = function() {
         { attrs: { label: "Indicator" } },
         [
           _c("b-form-select", {
-            attrs: { options: _vm.indicatorOptions },
+            attrs: { disabled: _vm.isEdit, options: _vm.indicatorOptions },
             model: {
               value: _vm.report.indicator_id,
               callback: function($$v) {
@@ -38176,7 +38227,7 @@ var render = function() {
             [
               _c(
                 "b-form-group",
-                { attrs: { label: "Indicato Step" } },
+                { attrs: { label: "Indicator Step" } },
                 _vm._l(_vm.indicatorSteps, function(step) {
                   return _c(
                     "b-form-checkbox",
@@ -55414,6 +55465,9 @@ var apiUrl = function apiUrl(str) {
     },
     "delete": function _delete(id) {
       return axios__WEBPACK_IMPORTED_MODULE_0___default.a["delete"](apiUrl("/report/".concat(id)));
+    },
+    update: function update(id, data) {
+      return axios__WEBPACK_IMPORTED_MODULE_0___default.a.patch(apiUrl("/report/".concat(id)), data);
     }
   }
 });

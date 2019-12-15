@@ -2,23 +2,24 @@
   <b-form @submit.prevent="onSubmit">
     <b-form-group label="Date">
       <b-form-input
-        type="date"
         v-model="report.reported_at"
+        :disabled="isEdit"
+        type="date"
         required
         placeholder="Reported date..."
       ></b-form-input>
     </b-form-group>
 
     <b-form-group label="Patient">
-      <b-form-select v-model="report.patient_id" :options="patientOptions"></b-form-select>
+      <b-form-select v-model="report.patient_id" :disabled="isEdit" :options="patientOptions"></b-form-select>
     </b-form-group>
 
     <b-form-group label="Indicator">
-      <b-form-select v-model="report.indicator_id" :options="indicatorOptions"></b-form-select>
+      <b-form-select v-model="report.indicator_id" :disabled="isEdit" :options="indicatorOptions"></b-form-select>
     </b-form-group>
 
     <div v-if="indicatorSteps">
-      <b-form-group label="Indicato Step">
+      <b-form-group label="Indicator Step">
         <b-form-checkbox
           class="form-checkbox"
           v-for="step in indicatorSteps"
@@ -45,6 +46,7 @@ export default {
 
   data() {
     return {
+      apiLoading: true,
       report: {},
 
       patientList: [],
@@ -88,6 +90,11 @@ export default {
     loading: {
       type: Boolean,
       default: false
+    },
+
+    isEdit: {
+      type: Boolean,
+      default: false
     }
   },
 
@@ -101,7 +108,7 @@ export default {
     }
   },
 
-  mounted() {
+  async mounted() {
     this.fetchPatient();
     this.fetchIndicator();
   },
