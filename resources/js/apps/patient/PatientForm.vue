@@ -9,6 +9,13 @@
       ></b-form-input>
     </b-form-group>
 
+    <b-form-group label="Kelurahan">
+      <b-form-select
+        v-model="patient.kelurahan_id"
+        :options="kelurahanOptions">
+      </b-form-select>
+    </b-form-group>
+
     <b-form-group label="Birth Date">
       <b-form-input
         v-model="patient.birth_date"
@@ -33,12 +40,15 @@
 </template>
 
 <script>
+import API from '../../interface';
+
 export default {
   name: 'PatientForm',
 
   data() {
     return {
-      patient: {}
+      patient: {},
+      kelurahan: []
     }
   },
 
@@ -48,7 +58,18 @@ export default {
         { value: 'MALE', text: 'Laki-laki' },
         { value: 'FEMALE', text: 'Perempuan' }
       ]
+    },
+
+    kelurahanOptions() {
+      return this.kelurahan.map(kelurahan => ({
+        value: kelurahan.id,
+        text: kelurahan.name
+      }))
     }
+  },
+
+  mounted() {
+    this.fetchKelurahan();
   },
 
   props: {
@@ -76,6 +97,11 @@ export default {
   methods: {
     onSubmit() {
       this.$emit('submit', this.patient);
+    },
+
+    async fetchKelurahan() {
+      const { data } = await API.kelurahan.list();
+      this.kelurahan = data.data;
     }
   }
 }

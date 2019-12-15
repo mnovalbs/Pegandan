@@ -47,7 +47,7 @@ class PatientController extends Controller
 
     public function apiList()
     {
-        $patients = Patient::all();
+        $patients = Patient::with(['kelurahan'])->get();
         foreach ($patients as $patient) {
             $patient->age = $patient->age;
         }
@@ -59,13 +59,13 @@ class PatientController extends Controller
         $name = $request->input('name');
         $birth_date = $request->input('birth_date');
         $sex = $request->input('sex');
-        $kecamatan_id = $request->input('kecamatan_id');
+        $kelurahan_id = $request->input('kelurahan_id');
 
         $patient = new Patient;
         $patient->name = $name;
         $patient->birth_date = $birth_date;
         $patient->sex = $sex;
-        $patient->kecamatan_id = $kecamatan_id;
+        $patient->kelurahan_id = $kelurahan_id;
         $patient->save();
 
         return response()->api(201, $patient);
@@ -76,13 +76,13 @@ class PatientController extends Controller
         $name = $request->input('name');
         $birth_date = $request->input('birth_date');
         $sex = $request->input('sex');
-        $kecamatan_id = $request->input('kecamatan_id');
+        $kelurahan_id = $request->input('kelurahan_id');
 
         $patient = Patient::find($id);
         $patient->name = $name;
         $patient->birth_date = $birth_date;
         $patient->sex = $sex;
-        $patient->kecamatan_id = $kecamatan_id;
+        $patient->kelurahan_id = $kelurahan_id;
         $patient->save();
 
         return response()->api(201, $patient);

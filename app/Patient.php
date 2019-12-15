@@ -21,6 +21,11 @@ class Patient extends Model
         return (int)$date_diff->format("%y");
     }
 
+    public function kelurahan() 
+    {
+        return $this->belongsTo('App\Kelurahan', 'kelurahan_id');
+    }
+
     public function history()
     {
         return $this->hasMany('App\Report', 'patient_id');

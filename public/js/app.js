@@ -2900,6 +2900,10 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _interface__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../interface */ "./resources/js/interface/index.js");
+
 //
 //
 //
@@ -2934,11 +2938,20 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'PatientForm',
   data: function data() {
     return {
-      patient: {}
+      patient: {},
+      kelurahan: []
     };
   },
   computed: {
@@ -2950,7 +2963,18 @@ __webpack_require__.r(__webpack_exports__);
         value: 'FEMALE',
         text: 'Perempuan'
       }];
+    },
+    kelurahanOptions: function kelurahanOptions() {
+      return this.kelurahan.map(function (kelurahan) {
+        return {
+          value: kelurahan.id,
+          text: kelurahan.name
+        };
+      });
     }
+  },
+  mounted: function mounted() {
+    this.fetchKelurahan();
   },
   props: {
     form: {
@@ -2976,6 +3000,28 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     onSubmit: function onSubmit() {
       this.$emit('submit', this.patient);
+    },
+    fetchKelurahan: function fetchKelurahan() {
+      var _ref, data;
+
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.async(function fetchKelurahan$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              _context.next = 2;
+              return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(_interface__WEBPACK_IMPORTED_MODULE_1__["default"].kelurahan.list());
+
+            case 2:
+              _ref = _context.sent;
+              data = _ref.data;
+              this.kelurahan = data.data;
+
+            case 5:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, null, this);
     }
   }
 });
@@ -3025,13 +3071,21 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 
 
 var defaultData = {
   name: '',
   birth_date: '',
-  sex: 'MALE'
+  sex: 'MALE',
+  kelurahan_id: null
 };
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "PatientList",
@@ -3046,7 +3100,7 @@ var defaultData = {
   },
   computed: {
     fields: function fields() {
-      return ["id", "name", "birth_date", "sex", "age", "action"];
+      return ["id", "name", "birth_date", "sex", "age", "kelurahan", "action"];
     }
   },
   components: {
@@ -38646,6 +38700,24 @@ var render = function() {
       _vm._v(" "),
       _c(
         "b-form-group",
+        { attrs: { label: "Kelurahan" } },
+        [
+          _c("b-form-select", {
+            attrs: { options: _vm.kelurahanOptions },
+            model: {
+              value: _vm.patient.kelurahan_id,
+              callback: function($$v) {
+                _vm.$set(_vm.patient, "kelurahan_id", $$v)
+              },
+              expression: "patient.kelurahan_id"
+            }
+          })
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "b-form-group",
         { attrs: { label: "Birth Date" } },
         [
           _c("b-form-input", {
@@ -38786,6 +38858,24 @@ var render = function() {
                           ],
                           1
                         )
+                      ]
+                    }
+                  },
+                  {
+                    key: "cell(kelurahan)",
+                    fn: function(row) {
+                      return [
+                        _c("span", [
+                          _vm._v(
+                            "\n          " +
+                              _vm._s(
+                                (row.item.kelurahan &&
+                                  row.item.kelurahan.name) ||
+                                  "-"
+                              ) +
+                              "\n        "
+                          )
+                        ])
                       ]
                     }
                   }

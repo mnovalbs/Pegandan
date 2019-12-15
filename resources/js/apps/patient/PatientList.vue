@@ -13,8 +13,15 @@
             </router-link>
           </div>
         </template>
+
+        <template v-slot:cell(kelurahan)="row">
+          <span>
+            {{ row.item.kelurahan && row.item.kelurahan.name || '-' }}
+          </span>
+        </template>
       </b-table>
     </panel>
+
 
     <b-modal id="modal-edit" title="Edit Patient" hide-footer>
       <patient-form :form="dataEdit" :loading="submitLoading" @submit="doEdit"></patient-form>
@@ -34,7 +41,8 @@ import API from "../../interface";
 const defaultData = {
   name: '',
   birth_date: '',
-  sex: 'MALE'
+  sex: 'MALE',
+  kelurahan_id: null
 }
 
 export default {
@@ -53,7 +61,7 @@ export default {
 
   computed: {
     fields() {
-      return ["id", "name", "birth_date", "sex", "age", "action"];
+      return ["id", "name", "birth_date", "sex", "age", "kelurahan", "action"];
     }
   },
 
