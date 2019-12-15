@@ -16,7 +16,7 @@
 
 <script>
 import PatientForm from '../../components/PatientForm';
-import PatientTable from '../../components/PatienTable';
+import PatientTable from '../../components/PatientTable';
 import Panel from "../../components/Panel";
 import API from "../../interface";
 

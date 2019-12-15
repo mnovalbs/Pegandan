@@ -2903,7 +2903,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _components_PatientForm__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../components/PatientForm */ "./resources/js/components/PatientForm.vue");
-/* harmony import */ var _components_PatienTable__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../components/PatienTable */ "./resources/js/components/PatienTable.vue");
+/* harmony import */ var _components_PatientTable__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../components/PatientTable */ "./resources/js/components/PatientTable.vue");
 /* harmony import */ var _components_Panel__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../components/Panel */ "./resources/js/components/Panel.vue");
 /* harmony import */ var _interface__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../interface */ "./resources/js/interface/index.js");
 
@@ -2950,7 +2950,7 @@ var defaultData = {
     }
   },
   components: {
-    PatientTable: _components_PatienTable__WEBPACK_IMPORTED_MODULE_2__["default"],
+    PatientTable: _components_PatientTable__WEBPACK_IMPORTED_MODULE_5__["default"],
     PatientForm: _components_PatientForm__WEBPACK_IMPORTED_MODULE_1__["default"],
     Panel: _components_Panel__WEBPACK_IMPORTED_MODULE_3__["default"]
   },
@@ -3529,128 +3529,6 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/PatienTable.vue?vue&type=script&lang=js&":
-/*!**********************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/PatienTable.vue?vue&type=script&lang=js& ***!
-  \**********************************************************************************************************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _PatientForm__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./PatientForm */ "./resources/js/components/PatientForm.vue");
-/* harmony import */ var _Panel__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Panel */ "./resources/js/components/Panel.vue");
-/* harmony import */ var _interface__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../interface */ "./resources/js/interface/index.js");
-
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-  name: "PatientTable",
-  data: function data() {
-    return {
-      submitLoading: false,
-      dataEdit: {}
-    };
-  },
-  props: {
-    list: {
-      type: Array,
-      "default": function _default() {
-        return [];
-      }
-    },
-    loading: {
-      type: Boolean,
-      "default": false
-    }
-  },
-  computed: {
-    fields: function fields() {
-      return ["id", "name", "birth_date", "sex", "age", "kelurahan", "action"];
-    }
-  },
-  components: {
-    PatientForm: _PatientForm__WEBPACK_IMPORTED_MODULE_1__["default"],
-    Panel: _Panel__WEBPACK_IMPORTED_MODULE_2__["default"]
-  },
-  methods: {
-    edit: function edit(row) {
-      var id = row.item.id;
-      var data = this.list.find(function (patient) {
-        return patient.id === id;
-      });
-      this.dataEdit = Object.assign({}, data);
-      this.$bvModal.show('modal-edit');
-    },
-    doEdit: function doEdit() {
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.async(function doEdit$(_context) {
-        while (1) {
-          switch (_context.prev = _context.next) {
-            case 0:
-              _context.prev = 0;
-              this.submitLoading = true;
-              _context.next = 4;
-              return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(_interface__WEBPACK_IMPORTED_MODULE_3__["default"].patient.update(this.dataEdit.id, this.dataEdit));
-
-            case 4:
-              this.$bvModal.hide('modal-edit');
-              this.$emit('requestUpdate');
-              _context.next = 11;
-              break;
-
-            case 8:
-              _context.prev = 8;
-              _context.t0 = _context["catch"](0);
-              alert(_context.t0.response.data.message);
-
-            case 11:
-              _context.prev = 11;
-              this.submitLoading = false;
-              return _context.finish(11);
-
-            case 14:
-            case "end":
-              return _context.stop();
-          }
-        }
-      }, null, this, [[0, 8, 11, 14]]);
-    }
-  }
-});
-
-/***/ }),
-
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/PatientForm.vue?vue&type=script&lang=js&":
 /*!**********************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/PatientForm.vue?vue&type=script&lang=js& ***!
@@ -3782,6 +3660,128 @@ __webpack_require__.r(__webpack_exports__);
           }
         }
       }, null, this);
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/PatientTable.vue?vue&type=script&lang=js&":
+/*!***********************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/PatientTable.vue?vue&type=script&lang=js& ***!
+  \***********************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _PatientForm__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./PatientForm */ "./resources/js/components/PatientForm.vue");
+/* harmony import */ var _Panel__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Panel */ "./resources/js/components/Panel.vue");
+/* harmony import */ var _interface__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../interface */ "./resources/js/interface/index.js");
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: "PatientTable",
+  data: function data() {
+    return {
+      submitLoading: false,
+      dataEdit: {}
+    };
+  },
+  props: {
+    list: {
+      type: Array,
+      "default": function _default() {
+        return [];
+      }
+    },
+    loading: {
+      type: Boolean,
+      "default": false
+    }
+  },
+  computed: {
+    fields: function fields() {
+      return ["id", "name", "birth_date", "sex", "age", "kelurahan", "action"];
+    }
+  },
+  components: {
+    PatientForm: _PatientForm__WEBPACK_IMPORTED_MODULE_1__["default"],
+    Panel: _Panel__WEBPACK_IMPORTED_MODULE_2__["default"]
+  },
+  methods: {
+    edit: function edit(row) {
+      var id = row.item.id;
+      var data = this.list.find(function (patient) {
+        return patient.id === id;
+      });
+      this.dataEdit = Object.assign({}, data);
+      this.$bvModal.show('modal-edit');
+    },
+    doEdit: function doEdit() {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.async(function doEdit$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              _context.prev = 0;
+              this.submitLoading = true;
+              _context.next = 4;
+              return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(_interface__WEBPACK_IMPORTED_MODULE_3__["default"].patient.update(this.dataEdit.id, this.dataEdit));
+
+            case 4:
+              this.$bvModal.hide('modal-edit');
+              this.$emit('requestUpdate');
+              _context.next = 11;
+              break;
+
+            case 8:
+              _context.prev = 8;
+              _context.t0 = _context["catch"](0);
+              alert(_context.t0.response.data.message);
+
+            case 11:
+              _context.prev = 11;
+              this.submitLoading = false;
+              return _context.finish(11);
+
+            case 14:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, null, this, [[0, 8, 11, 14]]);
     }
   }
 });
@@ -39166,127 +39166,6 @@ render._withStripped = true
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/PatienTable.vue?vue&type=template&id=7cd8edb8&":
-/*!**************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/PatienTable.vue?vue&type=template&id=7cd8edb8& ***!
-  \**************************************************************************************************************************************************************************************************************/
-/*! exports provided: render, staticRenderFns */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    [
-      _c(
-        "panel",
-        { attrs: { title: "Pasien" } },
-        [
-          _vm.loading
-            ? _c("span", [_vm._v("Loading...")])
-            : _c("b-table", {
-                attrs: {
-                  striped: "",
-                  hover: "",
-                  items: _vm.list,
-                  fields: _vm.fields
-                },
-                scopedSlots: _vm._u([
-                  {
-                    key: "cell(action)",
-                    fn: function(row) {
-                      return [
-                        _c(
-                          "div",
-                          [
-                            _c(
-                              "b-button",
-                              {
-                                attrs: { size: "sm" },
-                                on: {
-                                  click: function($event) {
-                                    return _vm.edit(row)
-                                  }
-                                }
-                              },
-                              [_vm._v("Edit")]
-                            ),
-                            _vm._v(" "),
-                            _c(
-                              "router-link",
-                              { attrs: { to: "/patient/" + row.item.id } },
-                              [
-                                _c(
-                                  "b-button",
-                                  {
-                                    staticClass: "btn btn-primary",
-                                    attrs: { size: "sm" }
-                                  },
-                                  [_vm._v("Detail")]
-                                )
-                              ],
-                              1
-                            )
-                          ],
-                          1
-                        )
-                      ]
-                    }
-                  },
-                  {
-                    key: "cell(kelurahan)",
-                    fn: function(row) {
-                      return [
-                        _c("span", [
-                          _vm._v(
-                            "\n          " +
-                              _vm._s(
-                                (row.item.kelurahan &&
-                                  row.item.kelurahan.name) ||
-                                  "-"
-                              ) +
-                              "\n        "
-                          )
-                        ])
-                      ]
-                    }
-                  }
-                ])
-              })
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _c(
-        "b-modal",
-        {
-          attrs: { id: "modal-edit", title: "Edit Patient", "hide-footer": "" }
-        },
-        [
-          _c("patient-form", {
-            attrs: { form: _vm.dataEdit, loading: _vm.submitLoading },
-            on: { submit: _vm.doEdit }
-          })
-        ],
-        1
-      )
-    ],
-    1
-  )
-}
-var staticRenderFns = []
-render._withStripped = true
-
-
-
-/***/ }),
-
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/PatientForm.vue?vue&type=template&id=0fc07fce&":
 /*!**************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/PatientForm.vue?vue&type=template&id=0fc07fce& ***!
@@ -39396,6 +39275,127 @@ var render = function() {
             "\n    " + _vm._s(_vm.loading ? "Loading..." : "Submit") + "\n  "
           )
         ]
+      )
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/PatientTable.vue?vue&type=template&id=088ae334&":
+/*!***************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/PatientTable.vue?vue&type=template&id=088ae334& ***!
+  \***************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    [
+      _c(
+        "panel",
+        { attrs: { title: "Pasien" } },
+        [
+          _vm.loading
+            ? _c("span", [_vm._v("Loading...")])
+            : _c("b-table", {
+                attrs: {
+                  striped: "",
+                  hover: "",
+                  items: _vm.list,
+                  fields: _vm.fields
+                },
+                scopedSlots: _vm._u([
+                  {
+                    key: "cell(action)",
+                    fn: function(row) {
+                      return [
+                        _c(
+                          "div",
+                          [
+                            _c(
+                              "b-button",
+                              {
+                                attrs: { size: "sm" },
+                                on: {
+                                  click: function($event) {
+                                    return _vm.edit(row)
+                                  }
+                                }
+                              },
+                              [_vm._v("Edit")]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "router-link",
+                              { attrs: { to: "/patient/" + row.item.id } },
+                              [
+                                _c(
+                                  "b-button",
+                                  {
+                                    staticClass: "btn btn-primary",
+                                    attrs: { size: "sm" }
+                                  },
+                                  [_vm._v("Detail")]
+                                )
+                              ],
+                              1
+                            )
+                          ],
+                          1
+                        )
+                      ]
+                    }
+                  },
+                  {
+                    key: "cell(kelurahan)",
+                    fn: function(row) {
+                      return [
+                        _c("span", [
+                          _vm._v(
+                            "\n          " +
+                              _vm._s(
+                                (row.item.kelurahan &&
+                                  row.item.kelurahan.name) ||
+                                  "-"
+                              ) +
+                              "\n        "
+                          )
+                        ])
+                      ]
+                    }
+                  }
+                ])
+              })
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "b-modal",
+        {
+          attrs: { id: "modal-edit", title: "Edit Patient", "hide-footer": "" }
+        },
+        [
+          _c("patient-form", {
+            attrs: { form: _vm.dataEdit, loading: _vm.submitLoading },
+            on: { submit: _vm.doEdit }
+          })
+        ],
+        1
       )
     ],
     1
@@ -56808,75 +56808,6 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/components/PatienTable.vue":
-/*!*************************************************!*\
-  !*** ./resources/js/components/PatienTable.vue ***!
-  \*************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _PatienTable_vue_vue_type_template_id_7cd8edb8___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./PatienTable.vue?vue&type=template&id=7cd8edb8& */ "./resources/js/components/PatienTable.vue?vue&type=template&id=7cd8edb8&");
-/* harmony import */ var _PatienTable_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./PatienTable.vue?vue&type=script&lang=js& */ "./resources/js/components/PatienTable.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
-
-
-
-
-
-/* normalize component */
-
-var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  _PatienTable_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _PatienTable_vue_vue_type_template_id_7cd8edb8___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _PatienTable_vue_vue_type_template_id_7cd8edb8___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
-  false,
-  null,
-  null,
-  null
-  
-)
-
-/* hot reload */
-if (false) { var api; }
-component.options.__file = "resources/js/components/PatienTable.vue"
-/* harmony default export */ __webpack_exports__["default"] = (component.exports);
-
-/***/ }),
-
-/***/ "./resources/js/components/PatienTable.vue?vue&type=script&lang=js&":
-/*!**************************************************************************!*\
-  !*** ./resources/js/components/PatienTable.vue?vue&type=script&lang=js& ***!
-  \**************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_PatienTable_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./PatienTable.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/PatienTable.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_PatienTable_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
-
-/***/ }),
-
-/***/ "./resources/js/components/PatienTable.vue?vue&type=template&id=7cd8edb8&":
-/*!********************************************************************************!*\
-  !*** ./resources/js/components/PatienTable.vue?vue&type=template&id=7cd8edb8& ***!
-  \********************************************************************************/
-/*! exports provided: render, staticRenderFns */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_PatienTable_vue_vue_type_template_id_7cd8edb8___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./PatienTable.vue?vue&type=template&id=7cd8edb8& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/PatienTable.vue?vue&type=template&id=7cd8edb8&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_PatienTable_vue_vue_type_template_id_7cd8edb8___WEBPACK_IMPORTED_MODULE_0__["render"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_PatienTable_vue_vue_type_template_id_7cd8edb8___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
-
-
-
-/***/ }),
-
 /***/ "./resources/js/components/PatientForm.vue":
 /*!*************************************************!*\
   !*** ./resources/js/components/PatientForm.vue ***!
@@ -56941,6 +56872,75 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_PatientForm_vue_vue_type_template_id_0fc07fce___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_PatientForm_vue_vue_type_template_id_0fc07fce___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/PatientTable.vue":
+/*!**************************************************!*\
+  !*** ./resources/js/components/PatientTable.vue ***!
+  \**************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _PatientTable_vue_vue_type_template_id_088ae334___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./PatientTable.vue?vue&type=template&id=088ae334& */ "./resources/js/components/PatientTable.vue?vue&type=template&id=088ae334&");
+/* harmony import */ var _PatientTable_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./PatientTable.vue?vue&type=script&lang=js& */ "./resources/js/components/PatientTable.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _PatientTable_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _PatientTable_vue_vue_type_template_id_088ae334___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _PatientTable_vue_vue_type_template_id_088ae334___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/PatientTable.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/PatientTable.vue?vue&type=script&lang=js&":
+/*!***************************************************************************!*\
+  !*** ./resources/js/components/PatientTable.vue?vue&type=script&lang=js& ***!
+  \***************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_PatientTable_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./PatientTable.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/PatientTable.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_PatientTable_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/PatientTable.vue?vue&type=template&id=088ae334&":
+/*!*********************************************************************************!*\
+  !*** ./resources/js/components/PatientTable.vue?vue&type=template&id=088ae334& ***!
+  \*********************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_PatientTable_vue_vue_type_template_id_088ae334___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./PatientTable.vue?vue&type=template&id=088ae334& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/PatientTable.vue?vue&type=template&id=088ae334&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_PatientTable_vue_vue_type_template_id_088ae334___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_PatientTable_vue_vue_type_template_id_088ae334___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 
