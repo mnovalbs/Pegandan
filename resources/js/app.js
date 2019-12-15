@@ -13,7 +13,8 @@ import reportInstall from './apps/report';
 import kelurahanInstall from './apps/kelurahan';
 
 import '../sass/app.scss';
-import 'bootstrap-vue/dist/bootstrap-vue.css'
+import 'bootstrap-vue/dist/bootstrap-vue.css';
+import 'vue2-datepicker/index.css';
 
 Vue.use(BootstrapVue);
 Vue.use(Vuex);

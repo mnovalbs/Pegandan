@@ -1,8 +1,9 @@
 <template>
   <div>
     <panel title="Report">
+      <date-picker v-model="timeRange" range></date-picker>
       <span v-if="loading">Loading...</span>
-      <b-table v-else striped hover :items="list" :fields="fields">
+      <b-table v-else striped hover :items="filteredList" :fields="fields">
         <template v-slot:cell(patient)="row">
           {{ row.item.patient.name }}
         </template>
@@ -42,6 +43,7 @@
 </template>
 
 <script>
+import DatePicker from 'vue2-datepicker';
 import ReportForm from "./ReportForm";
 import Panel from "./Panel";
 import API from "../interface";
@@ -61,6 +63,10 @@ export default {
       submitLoading: false,
 
       dataEdit: {},
+      timeRange: [
+        new Date(Date.now() - (3600 * 24 * 30 * 1000)),
+        new Date()
+      ],
     };
   },
 
@@ -79,10 +85,22 @@ export default {
   computed: {
     fields() {
       return ["id", "patient", "indicator", "date", "status", "steps", "action"];
+    },
+
+    filteredList() {
+      const list = this.list;
+      return list.filter(l => {
+        const reportedAt = (new Date(l.reported_at + " 00:00:00")).getTime();
+        const timePrev = this.timeRange[0].getTime();
+        const timeNext = this.timeRange[1].getTime();
+
+        return reportedAt <= timeNext && reportedAt >= timePrev;
+      });
     }
   },
 
   components: {
+    DatePicker,
     ReportForm,
     Panel
   },
