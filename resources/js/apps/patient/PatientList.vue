@@ -6,7 +6,12 @@
       <span v-if="loading">Loading...</span>
       <b-table v-else striped hover :items="list" :fields="fields">
         <template v-slot:cell(action)="row">
-          <b-button size="sm" @click="edit(row)">Edit</b-button>
+          <div>
+            <b-button size="sm" @click="edit(row)">Edit</b-button>
+            <router-link :to="`/patient/${row.item.id}`">
+              <b-button size="sm" class="btn btn-primary">Detail</b-button>
+            </router-link>
+          </div>
         </template>
       </b-table>
     </panel>

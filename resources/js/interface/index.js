@@ -5,6 +5,7 @@ const apiUrl = str => '/api' + str;
 export default {
   patient: {
     list: () => axios.get(apiUrl('/patient')),
+    detail: id => axios.get(apiUrl(`/patient/${id}`)),
     update: (id, data) => axios.patch(apiUrl(`/patient/${id}`), data),
     create: data => axios.post(apiUrl('/patient'), data)
   },
