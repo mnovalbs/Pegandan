@@ -15,26 +15,34 @@ class UserController extends Controller
         {
             $data_user = \App\user::all();
         }
-    	return view('user.index',['data_user'=>$data_user]);
+        return view('user.index',['data_user'=>$data_user]);
     }
 
     public function create(Request $request)
     {
-    	\App\user::create($request->all());
-    	return redirect('/user')->with('sukses', 'Data pengguna berhasil ditambahkan.');
+
+        $user = new \App\user;
+        $user->name=$request->name;
+        $user->occupation=$request->occupation;
+        $user->email=$request->email;
+        $user->password=bcrypt($request->password);
+        $user->save();
+
+//        $user = \App\user::create($request->all());
+        return redirect('/user')->with('sukses', 'Data pengguna berhasil ditambahkan.');
     }
 
     public function edit($id)
     {
-    	$user = \App\user::find($id);    	
-    	return view('user/edit',['user'=>$user]);
+        $user = \App\user::find($id);       
+        return view('user/edit',['user'=>$user]);
     }
 
     public function update(Request $request, $id)
     {
-    	$user = \App\user::find($id);
-    	$user->update($request->all());
-    	return redirect('/user')->with('sukses', 'Data pengguna berhasil disunting');
+        $user = \App\user::find($id);
+        $user->update($request->all());
+        return redirect('/user')->with('sukses', 'Data pengguna berhasil disunting');
     }
 
     public function delete ($id)

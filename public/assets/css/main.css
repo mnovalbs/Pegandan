@@ -978,7 +978,7 @@ ul.activity-list > li {
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
   border-radius: 5px;
-  width: 70%;
+  width: 25%;
   height: 450px;
   margin: 0 auto;
   background-color: #fff; }
@@ -997,7 +997,8 @@ ul.activity-list > li {
     *vertical-align: auto;
     *zoom: 1;
     *display: inline;
-    width: 99%;
+    width: 90%;
+    padding-left: 10%;
     vertical-align: middle; }
   .auth-box .left {
     float: left;

@@ -34,7 +34,7 @@
         <a href="/"><img src="{{asset('assets/img/logo-dark.png')}}" alt="Klorofil Logo" class="img-responsive logo"></a>
       </div>
       <div class="container-fluid">
-        <div class="navbar-btn">
+        <!--<div class="navbar-btn">
           <button type="button" class="btn-toggle-fullwidth"><i class="lnr lnr-arrow-left-circle"></i></button>
         </div>
         <form class="navbar-form navbar-left">
@@ -42,12 +42,12 @@
             <input type="text" value="" class="form-control" placeholder="Search dashboard...">
             <span class="input-group-btn"><button type="button" class="btn btn-primary">Go</button></span>
           </div>
-        </form>
+        </form>-->
         
         <div id="navbar-menu">
           <ul class="nav navbar-nav navbar-right">
             <!--NOTIFICATION-->
-            <li class="dropdown">
+            <!--<li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="lnr lnr-question-circle"></i> <span>Help</span> <i class="icon-submenu lnr lnr-chevron-down"></i></a>
               <ul class="dropdown-menu">
                 <li><a href="#">Basic Use</a></li>
@@ -55,68 +55,72 @@
                 <li><a href="#">Security</a></li>
                 <li><a href="#">Troubleshooting</a></li>
               </ul>
-            </li>
+            </li>-->
             <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="{{asset('assets/img/user.png')}}" class="img-circle" alt="Avatar"> <span>Samuel</span> <i class="icon-submenu lnr lnr-chevron-down"></i></a>
-              <ul class="dropdown-menu">
-                <li><a href="#"><i class="lnr lnr-user"></i> <span>My Profile</span></a></li>
-                <li><a href="#"><i class="lnr lnr-envelope"></i> <span>Message</span></a></li>
-                <li><a href="#"><i class="lnr lnr-cog"></i> <span>Settings</span></a></li>
-                <li><a href="#"><i class="lnr lnr-exit"></i> <span>Logout</span></a></li>
-              </ul>
-            </li>
-          </ul>
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                <!--<img src="{{asset('assets/img/user.png')}}" class="img-circle" alt="Avatar"> -->
+                <span>{{auth()->user()->name}}</span> <i class="icon-submenu lnr lnr-chevron-down"></i></a>
+                <ul class="dropdown-menu">
+                  <li><a href="#"><i class="lnr lnr-user"></i> <span>My Profile</span></a></li>
+                  <li><a href="/logout"><i class="lnr lnr-exit"></i> <span>Logout</span></a></li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+      <!-- END NAVBAR -->
+      <!-- LEFT SIDEBAR -->
+      <div id="sidebar-nav" class="sidebar">
+        <div class="sidebar-scroll">
+          <nav>
+            <ul class="nav">
+              <li><a href="/"><i class="lnr lnr-home"></i> <span>Dashboard</span></a></li>
+              <li><a href="pasien" class=""><i class="lnr lnr-users"></i> <span>Pasien</span></a></li>
+              @if(auth()->user()->occupation=='Admin')
+              <li><a href="/indicator"><i class="lnr lnr-plus-circle"></i>Setting Indikator</a></li>
+              @endif
+              <li>
+                <a href="#subPages" data-toggle="collapse" class="collapsed"><i class="lnr lnr-list"></i> <span>Indikator</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
+                <div id="subPages" class="collapse">
+                  <ul id="nav-indicators"></ul>
+                </div>
+              </li>
+              <li><a href="/report" class=""><i class="lnr lnr-book"></i>Laporan</a></li>
+              @if(auth()->user()->occupation=='Admin')
+              <li><a href="/user" class=""><i class="lnr lnr-user"></i>User</a></li>
+              @endif  
+            </ul>
+          </nav>
         </div>
       </div>
-    </nav>
-    <!-- END NAVBAR -->
-    <!-- LEFT SIDEBAR -->
-    <div id="sidebar-nav" class="sidebar">
-      <div class="sidebar-scroll">
-        <nav>
-          <ul class="nav">
-            <li><a href="/"><i class="lnr lnr-home"></i> <span>Dashboard</span></a></li>
-            <li><a href="pasien" class=""><i class="lnr lnr-users"></i> <span>Pasien</span></a></li>
-            <li><a href="/indicator"><i class="lnr lnr-plus-circle"></i>Setting Indikator</a></li>
-            <li>
-              <a href="#subPages" data-toggle="collapse" class="collapsed"><i class="lnr lnr-list"></i> <span>Indikator</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
-              <div id="subPages" class="collapse">
-                <ul id="nav-indicators"></ul>
-              </div>
-            </li>
-            <li><a href="/report" class=""><i class="lnr lnr-book"></i>Laporan</a></li>
-            <li><a href="/user" class=""><i class="lnr lnr-user"></i>User</a></li>  
-          </ul>
-        </nav>
+      <!-- END LEFT SIDEBAR -->
+      <!-- MAIN -->
+      <div class="main">
+        <div class="main-content">
+          <div class="container-fluid">
+            @yield('content')
+          </div>
+        </div>
       </div>
-    </div>
-    <!-- END LEFT SIDEBAR -->
-    <!-- MAIN -->
-    <div class="main">
-      <div class="main-content">
+      <!-- END MAIN -->
+      <div class="clearfix"></div>
+      <footer>
         <div class="container-fluid">
-          @yield('content')
+          <p class="copyright">&copy; 2017 <a href="https://www.themeineed.com" target="_blank">Theme I Need</a>. All Rights Reserved.</p>
         </div>
-      </div>
+      </footer>
     </div>
-    <!-- END MAIN -->
-    <div class="clearfix"></div>
-    <footer>
-      <div class="container-fluid">
-        <p class="copyright">&copy; 2017 <a href="https://www.themeineed.com" target="_blank">Theme I Need</a>. All Rights Reserved.</p>
-      </div>
-    </footer>
-  </div>
-  <!-- END WRAPPER -->
-  <!-- Javascript -->
-  <script src="{{asset('assets/vendor/jquery/jquery.min.js')}}"></script>
-  <script src="{{asset('assets/vendor/bootstrap/js/bootstrap.min.js')}}"></script>
-  <script src="{{asset('assets/vendor/jquery-slimscroll/jquery.slimscroll.min.js')}}"></script>
-  <script src="{{asset('assets/vendor/jquery.easy-pie-chart/jquery.easypiechart.min.js')}}"></script>
-  <script src="{{asset('assets/vendor/chartist/js/chartist.min.js')}}"></script>
-  <script src="{{asset('assets/scripts/klorofil-common.js')}}"></script>
-  
-  <script src="{{asset('js/app.js')}}"></script>
-</body>
+    <!-- END WRAPPER -->
+    <!-- Javascript -->
+    <script src="{{asset('assets/vendor/jquery/jquery.min.js')}}"></script>
+    <script src="{{asset('assets/vendor/bootstrap/js/bootstrap.min.js')}}"></script>
+    <script src="{{asset('assets/vendor/jquery-slimscroll/jquery.slimscroll.min.js')}}"></script>
+    <script src="{{asset('assets/vendor/jquery.easy-pie-chart/jquery.easypiechart.min.js')}}"></script>
+    <script src="{{asset('assets/vendor/chartist/js/chartist.min.js')}}"></script>
+    <script src="{{asset('assets/scripts/klorofil-common.js')}}"></script>
 
-</html>
+    <script src="{{asset('js/app.js')}}"></script>
+  </body>
+
+  </html>
