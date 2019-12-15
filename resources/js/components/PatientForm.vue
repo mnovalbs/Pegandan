@@ -40,7 +40,7 @@
 </template>
 
 <script>
-import API from '../../interface';
+import API from '../interface';
 
 export default {
   name: 'PatientForm',

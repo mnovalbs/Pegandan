@@ -2,30 +2,11 @@
   <div>
     <b-button class="btn btn-primary btn-create" @click="$bvModal.show('modal-create')">Create new patient</b-button>
 
-    <panel title="Pasien">
-      <span v-if="loading">Loading...</span>
-      <b-table v-else striped hover :items="list" :fields="fields">
-        <template v-slot:cell(action)="row">
-          <div>
-            <b-button size="sm" @click="edit(row)">Edit</b-button>
-            <router-link :to="`/patient/${row.item.id}`">
-              <b-button size="sm" class="btn btn-primary">Detail</b-button>
-            </router-link>
-          </div>
-        </template>
-
-        <template v-slot:cell(kelurahan)="row">
-          <span>
-            {{ row.item.kelurahan && row.item.kelurahan.name || '-' }}
-          </span>
-        </template>
-      </b-table>
-    </panel>
-
-
-    <b-modal id="modal-edit" title="Edit Patient" hide-footer>
-      <patient-form :form="dataEdit" :loading="submitLoading" @submit="doEdit"></patient-form>
-    </b-modal>
+    <patient-table
+      :list="list"
+      :loading="loading"
+      @requestUpdate="fetchData"
+    ></patient-table>
 
     <b-modal id="modal-create" title="Create new Patient" hide-footer>
       <patient-form :form="dataAdd" :loading="submitLoading" @submit="doCreate"></patient-form>
@@ -34,7 +15,8 @@
 </template>
 
 <script>
-import PatientForm from './PatientForm';
+import PatientForm from '../../components/PatientForm';
+import PatientTable from '../../components/PatienTable';
 import Panel from "../../components/Panel";
 import API from "../../interface";
 
@@ -66,6 +48,7 @@ export default {
   },
 
   components: {
+    PatientTable,
     PatientForm,
     Panel
   },
@@ -75,27 +58,6 @@ export default {
   },
 
   methods: {
-    edit(row) {
-      const { id } = row.item;
-      const data = this.list.find(patient => patient.id === id);
-
-      this.dataEdit = Object.assign({}, data);
-      this.$bvModal.show('modal-edit');
-    },
-
-    async doEdit() {
-      try {
-        this.submitLoading = true;
-        await API.patient.update(this.dataEdit.id, this.dataEdit);
-        this.$bvModal.hide('modal-edit');
-        this.fetchData();
-      } catch (e) {
-        alert(e.response.data.message);
-      } finally {
-        this.submitLoading = false;
-      }
-    },
-
     async doCreate() {
       try {
         this.submitLoading = true;

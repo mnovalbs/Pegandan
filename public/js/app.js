@@ -2891,143 +2891,6 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/apps/patient/PatientForm.vue?vue&type=script&lang=js&":
-/*!************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/apps/patient/PatientForm.vue?vue&type=script&lang=js& ***!
-  \************************************************************************************************************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _interface__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../interface */ "./resources/js/interface/index.js");
-
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-  name: 'PatientForm',
-  data: function data() {
-    return {
-      patient: {},
-      kelurahan: []
-    };
-  },
-  computed: {
-    sexOptions: function sexOptions() {
-      return [{
-        value: 'MALE',
-        text: 'Laki-laki'
-      }, {
-        value: 'FEMALE',
-        text: 'Perempuan'
-      }];
-    },
-    kelurahanOptions: function kelurahanOptions() {
-      return this.kelurahan.map(function (kelurahan) {
-        return {
-          value: kelurahan.id,
-          text: kelurahan.name
-        };
-      });
-    }
-  },
-  mounted: function mounted() {
-    this.fetchKelurahan();
-  },
-  props: {
-    form: {
-      type: Object,
-      "default": function _default() {
-        return {};
-      }
-    },
-    loading: {
-      type: Boolean,
-      "default": false
-    }
-  },
-  watch: {
-    form: {
-      immediate: true,
-      deep: true,
-      handler: function handler(form) {
-        this.patient = form;
-      }
-    }
-  },
-  methods: {
-    onSubmit: function onSubmit() {
-      this.$emit('submit', this.patient);
-    },
-    fetchKelurahan: function fetchKelurahan() {
-      var _ref, data;
-
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.async(function fetchKelurahan$(_context) {
-        while (1) {
-          switch (_context.prev = _context.next) {
-            case 0:
-              _context.next = 2;
-              return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(_interface__WEBPACK_IMPORTED_MODULE_1__["default"].kelurahan.list());
-
-            case 2:
-              _ref = _context.sent;
-              data = _ref.data;
-              this.kelurahan = data.data;
-
-            case 5:
-            case "end":
-              return _context.stop();
-          }
-        }
-      }, null, this);
-    }
-  }
-});
-
-/***/ }),
-
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/apps/patient/PatientList.vue?vue&type=script&lang=js&":
 /*!************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/apps/patient/PatientList.vue?vue&type=script&lang=js& ***!
@@ -3039,9 +2902,10 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _PatientForm__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./PatientForm */ "./resources/js/apps/patient/PatientForm.vue");
-/* harmony import */ var _components_Panel__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../components/Panel */ "./resources/js/components/Panel.vue");
-/* harmony import */ var _interface__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../interface */ "./resources/js/interface/index.js");
+/* harmony import */ var _components_PatientForm__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../components/PatientForm */ "./resources/js/components/PatientForm.vue");
+/* harmony import */ var _components_PatienTable__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../components/PatienTable */ "./resources/js/components/PatienTable.vue");
+/* harmony import */ var _components_Panel__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../components/Panel */ "./resources/js/components/Panel.vue");
+/* harmony import */ var _interface__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../interface */ "./resources/js/interface/index.js");
 
 //
 //
@@ -3059,25 +2923,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+
 
 
 
@@ -3104,84 +2950,44 @@ var defaultData = {
     }
   },
   components: {
-    PatientForm: _PatientForm__WEBPACK_IMPORTED_MODULE_1__["default"],
-    Panel: _components_Panel__WEBPACK_IMPORTED_MODULE_2__["default"]
+    PatientTable: _components_PatienTable__WEBPACK_IMPORTED_MODULE_2__["default"],
+    PatientForm: _components_PatientForm__WEBPACK_IMPORTED_MODULE_1__["default"],
+    Panel: _components_Panel__WEBPACK_IMPORTED_MODULE_3__["default"]
   },
   mounted: function mounted() {
     this.fetchData();
   },
   methods: {
-    edit: function edit(row) {
-      var id = row.item.id;
-      var data = this.list.find(function (patient) {
-        return patient.id === id;
-      });
-      this.dataEdit = Object.assign({}, data);
-      this.$bvModal.show('modal-edit');
-    },
-    doEdit: function doEdit() {
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.async(function doEdit$(_context) {
+    doCreate: function doCreate() {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.async(function doCreate$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
               _context.prev = 0;
               this.submitLoading = true;
               _context.next = 4;
-              return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(_interface__WEBPACK_IMPORTED_MODULE_3__["default"].patient.update(this.dataEdit.id, this.dataEdit));
-
-            case 4:
-              this.$bvModal.hide('modal-edit');
-              this.fetchData();
-              _context.next = 11;
-              break;
-
-            case 8:
-              _context.prev = 8;
-              _context.t0 = _context["catch"](0);
-              alert(_context.t0.response.data.message);
-
-            case 11:
-              _context.prev = 11;
-              this.submitLoading = false;
-              return _context.finish(11);
-
-            case 14:
-            case "end":
-              return _context.stop();
-          }
-        }
-      }, null, this, [[0, 8, 11, 14]]);
-    },
-    doCreate: function doCreate() {
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.async(function doCreate$(_context2) {
-        while (1) {
-          switch (_context2.prev = _context2.next) {
-            case 0:
-              _context2.prev = 0;
-              this.submitLoading = true;
-              _context2.next = 4;
-              return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(_interface__WEBPACK_IMPORTED_MODULE_3__["default"].patient.create(this.dataAdd));
+              return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(_interface__WEBPACK_IMPORTED_MODULE_4__["default"].patient.create(this.dataAdd));
 
             case 4:
               this.dataAdd = Object.assign(defaultData);
               this.$bvModal.hide('modal-create');
               this.fetchData();
-              _context2.next = 12;
+              _context.next = 12;
               break;
 
             case 9:
-              _context2.prev = 9;
-              _context2.t0 = _context2["catch"](0);
-              alert(_context2.t0.response.data.message);
+              _context.prev = 9;
+              _context.t0 = _context["catch"](0);
+              alert(_context.t0.response.data.message);
 
             case 12:
-              _context2.prev = 12;
+              _context.prev = 12;
               this.submitLoading = false;
-              return _context2.finish(12);
+              return _context.finish(12);
 
             case 15:
             case "end":
-              return _context2.stop();
+              return _context.stop();
           }
         }
       }, null, this, [[0, 9, 12, 15]]);
@@ -3189,35 +2995,35 @@ var defaultData = {
     fetchData: function fetchData() {
       var _ref, data;
 
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.async(function fetchData$(_context3) {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.async(function fetchData$(_context2) {
         while (1) {
-          switch (_context3.prev = _context3.next) {
+          switch (_context2.prev = _context2.next) {
             case 0:
-              _context3.prev = 0;
+              _context2.prev = 0;
               this.loading = true;
-              _context3.next = 4;
-              return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(_interface__WEBPACK_IMPORTED_MODULE_3__["default"].patient.list());
+              _context2.next = 4;
+              return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(_interface__WEBPACK_IMPORTED_MODULE_4__["default"].patient.list());
 
             case 4:
-              _ref = _context3.sent;
+              _ref = _context2.sent;
               data = _ref.data;
               this.list = data.data;
-              _context3.next = 12;
+              _context2.next = 12;
               break;
 
             case 9:
-              _context3.prev = 9;
-              _context3.t0 = _context3["catch"](0);
+              _context2.prev = 9;
+              _context2.t0 = _context2["catch"](0);
               alert("Error while fetching patient data");
 
             case 12:
-              _context3.prev = 12;
+              _context2.prev = 12;
               this.loading = false;
-              return _context3.finish(12);
+              return _context2.finish(12);
 
             case 15:
             case "end":
-              return _context3.stop();
+              return _context2.stop();
           }
         }
       }, null, this, [[0, 9, 12, 15]]);
@@ -3717,6 +3523,265 @@ __webpack_require__.r(__webpack_exports__);
     title: {
       type: String,
       required: true
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/PatienTable.vue?vue&type=script&lang=js&":
+/*!**********************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/PatienTable.vue?vue&type=script&lang=js& ***!
+  \**********************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _PatientForm__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./PatientForm */ "./resources/js/components/PatientForm.vue");
+/* harmony import */ var _Panel__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Panel */ "./resources/js/components/Panel.vue");
+/* harmony import */ var _interface__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../interface */ "./resources/js/interface/index.js");
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: "PatientTable",
+  data: function data() {
+    return {
+      submitLoading: false,
+      dataEdit: {}
+    };
+  },
+  props: {
+    list: {
+      type: Array,
+      "default": function _default() {
+        return [];
+      }
+    },
+    loading: {
+      type: Boolean,
+      "default": false
+    }
+  },
+  computed: {
+    fields: function fields() {
+      return ["id", "name", "birth_date", "sex", "age", "kelurahan", "action"];
+    }
+  },
+  components: {
+    PatientForm: _PatientForm__WEBPACK_IMPORTED_MODULE_1__["default"],
+    Panel: _Panel__WEBPACK_IMPORTED_MODULE_2__["default"]
+  },
+  methods: {
+    edit: function edit(row) {
+      var id = row.item.id;
+      var data = this.list.find(function (patient) {
+        return patient.id === id;
+      });
+      this.dataEdit = Object.assign({}, data);
+      this.$bvModal.show('modal-edit');
+    },
+    doEdit: function doEdit() {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.async(function doEdit$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              _context.prev = 0;
+              this.submitLoading = true;
+              _context.next = 4;
+              return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(_interface__WEBPACK_IMPORTED_MODULE_3__["default"].patient.update(this.dataEdit.id, this.dataEdit));
+
+            case 4:
+              this.$bvModal.hide('modal-edit');
+              this.$emit('requestUpdate');
+              _context.next = 11;
+              break;
+
+            case 8:
+              _context.prev = 8;
+              _context.t0 = _context["catch"](0);
+              alert(_context.t0.response.data.message);
+
+            case 11:
+              _context.prev = 11;
+              this.submitLoading = false;
+              return _context.finish(11);
+
+            case 14:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, null, this, [[0, 8, 11, 14]]);
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/PatientForm.vue?vue&type=script&lang=js&":
+/*!**********************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/PatientForm.vue?vue&type=script&lang=js& ***!
+  \**********************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _interface__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../interface */ "./resources/js/interface/index.js");
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: 'PatientForm',
+  data: function data() {
+    return {
+      patient: {},
+      kelurahan: []
+    };
+  },
+  computed: {
+    sexOptions: function sexOptions() {
+      return [{
+        value: 'MALE',
+        text: 'Laki-laki'
+      }, {
+        value: 'FEMALE',
+        text: 'Perempuan'
+      }];
+    },
+    kelurahanOptions: function kelurahanOptions() {
+      return this.kelurahan.map(function (kelurahan) {
+        return {
+          value: kelurahan.id,
+          text: kelurahan.name
+        };
+      });
+    }
+  },
+  mounted: function mounted() {
+    this.fetchKelurahan();
+  },
+  props: {
+    form: {
+      type: Object,
+      "default": function _default() {
+        return {};
+      }
+    },
+    loading: {
+      type: Boolean,
+      "default": false
+    }
+  },
+  watch: {
+    form: {
+      immediate: true,
+      deep: true,
+      handler: function handler(form) {
+        this.patient = form;
+      }
+    }
+  },
+  methods: {
+    onSubmit: function onSubmit() {
+      this.$emit('submit', this.patient);
+    },
+    fetchKelurahan: function fetchKelurahan() {
+      var _ref, data;
+
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.async(function fetchKelurahan$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              _context.next = 2;
+              return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(_interface__WEBPACK_IMPORTED_MODULE_1__["default"].kelurahan.list());
+
+            case 2:
+              _ref = _context.sent;
+              data = _ref.data;
+              this.kelurahan = data.data;
+
+            case 5:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, null, this);
     }
   }
 });
@@ -38654,127 +38719,6 @@ render._withStripped = true
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/apps/patient/PatientForm.vue?vue&type=template&id=7b6c90c0&":
-/*!****************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/apps/patient/PatientForm.vue?vue&type=template&id=7b6c90c0& ***!
-  \****************************************************************************************************************************************************************************************************************/
-/*! exports provided: render, staticRenderFns */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c(
-    "b-form",
-    {
-      on: {
-        submit: function($event) {
-          $event.preventDefault()
-          return _vm.onSubmit($event)
-        }
-      }
-    },
-    [
-      _c(
-        "b-form-group",
-        { attrs: { label: "Name" } },
-        [
-          _c("b-form-input", {
-            attrs: { required: "", placeholder: "Patient name..." },
-            model: {
-              value: _vm.patient.name,
-              callback: function($$v) {
-                _vm.$set(_vm.patient, "name", $$v)
-              },
-              expression: "patient.name"
-            }
-          })
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _c(
-        "b-form-group",
-        { attrs: { label: "Kelurahan" } },
-        [
-          _c("b-form-select", {
-            attrs: { options: _vm.kelurahanOptions },
-            model: {
-              value: _vm.patient.kelurahan_id,
-              callback: function($$v) {
-                _vm.$set(_vm.patient, "kelurahan_id", $$v)
-              },
-              expression: "patient.kelurahan_id"
-            }
-          })
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _c(
-        "b-form-group",
-        { attrs: { label: "Birth Date" } },
-        [
-          _c("b-form-input", {
-            attrs: { type: "date", required: "", placeholder: "Birth date..." },
-            model: {
-              value: _vm.patient.birth_date,
-              callback: function($$v) {
-                _vm.$set(_vm.patient, "birth_date", $$v)
-              },
-              expression: "patient.birth_date"
-            }
-          })
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _c(
-        "b-form-group",
-        { attrs: { label: "Sex" } },
-        [
-          _c("b-form-select", {
-            attrs: { options: _vm.sexOptions },
-            model: {
-              value: _vm.patient.sex,
-              callback: function($$v) {
-                _vm.$set(_vm.patient, "sex", $$v)
-              },
-              expression: "patient.sex"
-            }
-          })
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _c(
-        "b-button",
-        {
-          staticClass: "btn btn-primary",
-          attrs: { type: "submit", disabled: _vm.loading }
-        },
-        [
-          _vm._v(
-            "\n    " + _vm._s(_vm.loading ? "Loading..." : "Submit") + "\n  "
-          )
-        ]
-      )
-    ],
-    1
-  )
-}
-var staticRenderFns = []
-render._withStripped = true
-
-
-
-/***/ }),
-
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/apps/patient/PatientList.vue?vue&type=template&id=137a430c&scoped=true&":
 /*!****************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/apps/patient/PatientList.vue?vue&type=template&id=137a430c&scoped=true& ***!
@@ -38806,98 +38750,10 @@ var render = function() {
         [_vm._v("Create new patient")]
       ),
       _vm._v(" "),
-      _c(
-        "panel",
-        { attrs: { title: "Pasien" } },
-        [
-          _vm.loading
-            ? _c("span", [_vm._v("Loading...")])
-            : _c("b-table", {
-                attrs: {
-                  striped: "",
-                  hover: "",
-                  items: _vm.list,
-                  fields: _vm.fields
-                },
-                scopedSlots: _vm._u([
-                  {
-                    key: "cell(action)",
-                    fn: function(row) {
-                      return [
-                        _c(
-                          "div",
-                          [
-                            _c(
-                              "b-button",
-                              {
-                                attrs: { size: "sm" },
-                                on: {
-                                  click: function($event) {
-                                    return _vm.edit(row)
-                                  }
-                                }
-                              },
-                              [_vm._v("Edit")]
-                            ),
-                            _vm._v(" "),
-                            _c(
-                              "router-link",
-                              { attrs: { to: "/patient/" + row.item.id } },
-                              [
-                                _c(
-                                  "b-button",
-                                  {
-                                    staticClass: "btn btn-primary",
-                                    attrs: { size: "sm" }
-                                  },
-                                  [_vm._v("Detail")]
-                                )
-                              ],
-                              1
-                            )
-                          ],
-                          1
-                        )
-                      ]
-                    }
-                  },
-                  {
-                    key: "cell(kelurahan)",
-                    fn: function(row) {
-                      return [
-                        _c("span", [
-                          _vm._v(
-                            "\n          " +
-                              _vm._s(
-                                (row.item.kelurahan &&
-                                  row.item.kelurahan.name) ||
-                                  "-"
-                              ) +
-                              "\n        "
-                          )
-                        ])
-                      ]
-                    }
-                  }
-                ])
-              })
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _c(
-        "b-modal",
-        {
-          attrs: { id: "modal-edit", title: "Edit Patient", "hide-footer": "" }
-        },
-        [
-          _c("patient-form", {
-            attrs: { form: _vm.dataEdit, loading: _vm.submitLoading },
-            on: { submit: _vm.doEdit }
-          })
-        ],
-        1
-      ),
+      _c("patient-table", {
+        attrs: { list: _vm.list, loading: _vm.loading },
+        on: { requestUpdate: _vm.fetchData }
+      }),
       _vm._v(" "),
       _c(
         "b-modal",
@@ -39302,6 +39158,248 @@ var render = function() {
     _vm._v(" "),
     _c("div", { staticClass: "panel-body" }, [_vm._t("default")], 2)
   ])
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/PatienTable.vue?vue&type=template&id=7cd8edb8&":
+/*!**************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/PatienTable.vue?vue&type=template&id=7cd8edb8& ***!
+  \**************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    [
+      _c(
+        "panel",
+        { attrs: { title: "Pasien" } },
+        [
+          _vm.loading
+            ? _c("span", [_vm._v("Loading...")])
+            : _c("b-table", {
+                attrs: {
+                  striped: "",
+                  hover: "",
+                  items: _vm.list,
+                  fields: _vm.fields
+                },
+                scopedSlots: _vm._u([
+                  {
+                    key: "cell(action)",
+                    fn: function(row) {
+                      return [
+                        _c(
+                          "div",
+                          [
+                            _c(
+                              "b-button",
+                              {
+                                attrs: { size: "sm" },
+                                on: {
+                                  click: function($event) {
+                                    return _vm.edit(row)
+                                  }
+                                }
+                              },
+                              [_vm._v("Edit")]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "router-link",
+                              { attrs: { to: "/patient/" + row.item.id } },
+                              [
+                                _c(
+                                  "b-button",
+                                  {
+                                    staticClass: "btn btn-primary",
+                                    attrs: { size: "sm" }
+                                  },
+                                  [_vm._v("Detail")]
+                                )
+                              ],
+                              1
+                            )
+                          ],
+                          1
+                        )
+                      ]
+                    }
+                  },
+                  {
+                    key: "cell(kelurahan)",
+                    fn: function(row) {
+                      return [
+                        _c("span", [
+                          _vm._v(
+                            "\n          " +
+                              _vm._s(
+                                (row.item.kelurahan &&
+                                  row.item.kelurahan.name) ||
+                                  "-"
+                              ) +
+                              "\n        "
+                          )
+                        ])
+                      ]
+                    }
+                  }
+                ])
+              })
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "b-modal",
+        {
+          attrs: { id: "modal-edit", title: "Edit Patient", "hide-footer": "" }
+        },
+        [
+          _c("patient-form", {
+            attrs: { form: _vm.dataEdit, loading: _vm.submitLoading },
+            on: { submit: _vm.doEdit }
+          })
+        ],
+        1
+      )
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/PatientForm.vue?vue&type=template&id=0fc07fce&":
+/*!**************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/PatientForm.vue?vue&type=template&id=0fc07fce& ***!
+  \**************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "b-form",
+    {
+      on: {
+        submit: function($event) {
+          $event.preventDefault()
+          return _vm.onSubmit($event)
+        }
+      }
+    },
+    [
+      _c(
+        "b-form-group",
+        { attrs: { label: "Name" } },
+        [
+          _c("b-form-input", {
+            attrs: { required: "", placeholder: "Patient name..." },
+            model: {
+              value: _vm.patient.name,
+              callback: function($$v) {
+                _vm.$set(_vm.patient, "name", $$v)
+              },
+              expression: "patient.name"
+            }
+          })
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "b-form-group",
+        { attrs: { label: "Kelurahan" } },
+        [
+          _c("b-form-select", {
+            attrs: { options: _vm.kelurahanOptions },
+            model: {
+              value: _vm.patient.kelurahan_id,
+              callback: function($$v) {
+                _vm.$set(_vm.patient, "kelurahan_id", $$v)
+              },
+              expression: "patient.kelurahan_id"
+            }
+          })
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "b-form-group",
+        { attrs: { label: "Birth Date" } },
+        [
+          _c("b-form-input", {
+            attrs: { type: "date", required: "", placeholder: "Birth date..." },
+            model: {
+              value: _vm.patient.birth_date,
+              callback: function($$v) {
+                _vm.$set(_vm.patient, "birth_date", $$v)
+              },
+              expression: "patient.birth_date"
+            }
+          })
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "b-form-group",
+        { attrs: { label: "Sex" } },
+        [
+          _c("b-form-select", {
+            attrs: { options: _vm.sexOptions },
+            model: {
+              value: _vm.patient.sex,
+              callback: function($$v) {
+                _vm.$set(_vm.patient, "sex", $$v)
+              },
+              expression: "patient.sex"
+            }
+          })
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "b-button",
+        {
+          staticClass: "btn btn-primary",
+          attrs: { type: "submit", disabled: _vm.loading }
+        },
+        [
+          _vm._v(
+            "\n    " + _vm._s(_vm.loading ? "Loading..." : "Submit") + "\n  "
+          )
+        ]
+      )
+    ],
+    1
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -56315,75 +56413,6 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/apps/patient/PatientForm.vue":
-/*!***************************************************!*\
-  !*** ./resources/js/apps/patient/PatientForm.vue ***!
-  \***************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _PatientForm_vue_vue_type_template_id_7b6c90c0___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./PatientForm.vue?vue&type=template&id=7b6c90c0& */ "./resources/js/apps/patient/PatientForm.vue?vue&type=template&id=7b6c90c0&");
-/* harmony import */ var _PatientForm_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./PatientForm.vue?vue&type=script&lang=js& */ "./resources/js/apps/patient/PatientForm.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
-
-
-
-
-
-/* normalize component */
-
-var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  _PatientForm_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _PatientForm_vue_vue_type_template_id_7b6c90c0___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _PatientForm_vue_vue_type_template_id_7b6c90c0___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
-  false,
-  null,
-  null,
-  null
-  
-)
-
-/* hot reload */
-if (false) { var api; }
-component.options.__file = "resources/js/apps/patient/PatientForm.vue"
-/* harmony default export */ __webpack_exports__["default"] = (component.exports);
-
-/***/ }),
-
-/***/ "./resources/js/apps/patient/PatientForm.vue?vue&type=script&lang=js&":
-/*!****************************************************************************!*\
-  !*** ./resources/js/apps/patient/PatientForm.vue?vue&type=script&lang=js& ***!
-  \****************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_PatientForm_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./PatientForm.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/apps/patient/PatientForm.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_PatientForm_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
-
-/***/ }),
-
-/***/ "./resources/js/apps/patient/PatientForm.vue?vue&type=template&id=7b6c90c0&":
-/*!**********************************************************************************!*\
-  !*** ./resources/js/apps/patient/PatientForm.vue?vue&type=template&id=7b6c90c0& ***!
-  \**********************************************************************************/
-/*! exports provided: render, staticRenderFns */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_PatientForm_vue_vue_type_template_id_7b6c90c0___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./PatientForm.vue?vue&type=template&id=7b6c90c0& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/apps/patient/PatientForm.vue?vue&type=template&id=7b6c90c0&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_PatientForm_vue_vue_type_template_id_7b6c90c0___WEBPACK_IMPORTED_MODULE_0__["render"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_PatientForm_vue_vue_type_template_id_7b6c90c0___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
-
-
-
-/***/ }),
-
 /***/ "./resources/js/apps/patient/PatientList.vue":
 /*!***************************************************!*\
   !*** ./resources/js/apps/patient/PatientList.vue ***!
@@ -56774,6 +56803,144 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Panel_vue_vue_type_template_id_79f9e0a9___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Panel_vue_vue_type_template_id_79f9e0a9___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/PatienTable.vue":
+/*!*************************************************!*\
+  !*** ./resources/js/components/PatienTable.vue ***!
+  \*************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _PatienTable_vue_vue_type_template_id_7cd8edb8___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./PatienTable.vue?vue&type=template&id=7cd8edb8& */ "./resources/js/components/PatienTable.vue?vue&type=template&id=7cd8edb8&");
+/* harmony import */ var _PatienTable_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./PatienTable.vue?vue&type=script&lang=js& */ "./resources/js/components/PatienTable.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _PatienTable_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _PatienTable_vue_vue_type_template_id_7cd8edb8___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _PatienTable_vue_vue_type_template_id_7cd8edb8___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/PatienTable.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/PatienTable.vue?vue&type=script&lang=js&":
+/*!**************************************************************************!*\
+  !*** ./resources/js/components/PatienTable.vue?vue&type=script&lang=js& ***!
+  \**************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_PatienTable_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./PatienTable.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/PatienTable.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_PatienTable_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/PatienTable.vue?vue&type=template&id=7cd8edb8&":
+/*!********************************************************************************!*\
+  !*** ./resources/js/components/PatienTable.vue?vue&type=template&id=7cd8edb8& ***!
+  \********************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_PatienTable_vue_vue_type_template_id_7cd8edb8___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./PatienTable.vue?vue&type=template&id=7cd8edb8& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/PatienTable.vue?vue&type=template&id=7cd8edb8&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_PatienTable_vue_vue_type_template_id_7cd8edb8___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_PatienTable_vue_vue_type_template_id_7cd8edb8___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/PatientForm.vue":
+/*!*************************************************!*\
+  !*** ./resources/js/components/PatientForm.vue ***!
+  \*************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _PatientForm_vue_vue_type_template_id_0fc07fce___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./PatientForm.vue?vue&type=template&id=0fc07fce& */ "./resources/js/components/PatientForm.vue?vue&type=template&id=0fc07fce&");
+/* harmony import */ var _PatientForm_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./PatientForm.vue?vue&type=script&lang=js& */ "./resources/js/components/PatientForm.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _PatientForm_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _PatientForm_vue_vue_type_template_id_0fc07fce___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _PatientForm_vue_vue_type_template_id_0fc07fce___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/PatientForm.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/PatientForm.vue?vue&type=script&lang=js&":
+/*!**************************************************************************!*\
+  !*** ./resources/js/components/PatientForm.vue?vue&type=script&lang=js& ***!
+  \**************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_PatientForm_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./PatientForm.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/PatientForm.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_PatientForm_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/PatientForm.vue?vue&type=template&id=0fc07fce&":
+/*!********************************************************************************!*\
+  !*** ./resources/js/components/PatientForm.vue?vue&type=template&id=0fc07fce& ***!
+  \********************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_PatientForm_vue_vue_type_template_id_0fc07fce___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./PatientForm.vue?vue&type=template&id=0fc07fce& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/PatientForm.vue?vue&type=template&id=0fc07fce&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_PatientForm_vue_vue_type_template_id_0fc07fce___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_PatientForm_vue_vue_type_template_id_0fc07fce___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 
