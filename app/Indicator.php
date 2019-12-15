@@ -17,6 +17,11 @@ class Indicator extends Model
         return $this->belongsTo('App\User', 'user_id');
     }
 
+    public function report()
+    {
+        return $this->hasMany('App\Report', 'indicator_id');
+    }
+
     public function steps()
     {
         return $this->hasMany('App\IndicatorStep', 'indicator_id');
