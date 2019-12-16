@@ -97,9 +97,9 @@ class ReportController extends Controller
             $report = $this->indicator_report($indicator->id, $date_start, $date_end);
             array_push($reports, [
                 $indicator->name,
-                $report['complete'],
-                $report['incomplete'],
-                $report['percentage'] * 100
+                $report['complete'] === 0 ? '0' : $report['complete'],
+                $report['incomplete'] === 0 ? '0' : $report['incomplete'],
+                $report['complete'] === 0 ? '0' : $report['percentage'] * 100
             ]);
         }
 
