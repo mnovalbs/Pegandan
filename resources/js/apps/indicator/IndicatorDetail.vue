@@ -150,7 +150,7 @@ export default {
 
     completeData() {
       return {
-        labels: this.kels.map(kel => kel.name),
+        labels: this.kels.map(kel => `${kel.name} (${this.completePercentage(kel)})`),
         datasets: [
           {
             backgroundColor,
@@ -163,7 +163,7 @@ export default {
 
     incompleteData() {
       return {
-        labels: this.kels.map(kel => kel.name),
+        labels: this.kels.map(kel => `${kel.name} (${this.incompletePercentage(kel)})`),
         datasets: [
           {
             backgroundColor,
@@ -176,7 +176,7 @@ export default {
 
     chartData() {
       return {
-        labels: this.kels.map(kel => kel.name),
+        labels: this.kels.map(kel => `${kel.name} (${this.allPercentage(kel)})`),
         datasets: [
           {
             backgroundColor,
@@ -194,6 +194,27 @@ export default {
   },
 
   methods: {
+    allPercentage(kel) {
+      const { count } = kel;
+      const allCount = this.kels.reduce((sum, a) => a.count + sum, 0);
+
+      return this.toPercentage(count ? count / allCount : 0);
+    },
+
+    completePercentage(kel) {
+      const { complete } = kel;
+      const allComplete = this.kels.reduce((sum, a) => a.complete + sum, 0);
+
+      return this.toPercentage(complete ? complete / allComplete : 0);
+    },
+
+    incompletePercentage(kel) {
+      const { incomplete } = kel;
+      const allincomplete = this.kels.reduce((sum, a) => a.incomplete + sum, 0);
+
+      return this.toPercentage(incomplete ? incomplete / allincomplete : 0);
+    },
+
     async fetchData() {
       const { data } = await API.indicators.detail(this.id);
       this.indicator = data.data;
