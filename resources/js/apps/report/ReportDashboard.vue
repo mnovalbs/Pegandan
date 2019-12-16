@@ -1,6 +1,15 @@
 <template>
   <div>
-    <date-picker v-model="timeRange" class="date-picker" range @change="fetchData"></date-picker>
+    <div class="row">
+      <div class="col-md-6">
+        <date-picker v-model="timeRange" class="date-picker" range @change="fetchData"></date-picker>
+      </div>
+      <div class="col-md-6 text-right">
+        <a href="/report">
+          <b-button class="btn btn-danger">Full Report</b-button>
+        </a>
+      </div>
+    </div>
     <panel title="Indicator">
       <bar-chart :width="800" :chartdata="barChartDataset" :options="barChartOptions"></bar-chart>
     </panel>
