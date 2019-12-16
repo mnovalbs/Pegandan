@@ -1,4 +1,5 @@
 import App from './App';
+import router from './router';
 
 export default function install(Vue) {
   const el = '#report';
@@ -6,6 +7,7 @@ export default function install(Vue) {
 
   new Vue({
     el,
+    router,
     render: h => h(App)
   });
 }

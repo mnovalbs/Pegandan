@@ -75,7 +75,7 @@
         <div class="sidebar-scroll">
           <nav>
             <ul class="nav">
-              <li><a href="/"><i class="lnr lnr-home"></i> <span>Dashboard</span></a></li>
+              <li><a href="/home"><i class="lnr lnr-home"></i> <span>Dashboard</span></a></li>
               <li><a href="/patient" class=""><i class="lnr lnr-users"></i> <span>Pasien</span></a></li>
               @if(auth()->user()->occupation=='Admin')
               <li><a href="/indicator"><i class="lnr lnr-plus-circle"></i>Setting Indikator</a></li>

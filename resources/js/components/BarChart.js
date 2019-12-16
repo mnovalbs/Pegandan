@@ -1,7 +1,7 @@
-import { HorizontalBar } from 'vue-chartjs'
+import { Bar } from 'vue-chartjs'
 
 export default {
-  extends: HorizontalBar,
+  extends: Bar,
 
   props: {
     chartdata: {
