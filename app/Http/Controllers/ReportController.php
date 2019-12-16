@@ -114,7 +114,7 @@ class ReportController extends Controller
         $date = Date("Y-m-d H-m-s");
 
         header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
-        header('Content-Disposition: attachment;filename="' . $date . '.xlsx"');
+        header('Content-Disposition: attachment;filename="' . $date_start . '_' . $date_end . '.xlsx"');
         header('Cache-Control: max-age=0');
         $writer = IOFactory::createWriter($spreadsheet, 'Xlsx');
         $writer->save('php://output');

@@ -6,7 +6,10 @@
       </div>
       <div class="col-md-6 text-right">
         <a href="#!" ref="link_download">
-          <b-button class="btn btn-primary">Download</b-button>
+          <b-button class="btn btn-primary">Download Csv</b-button>
+        </a>
+        <a :href="`/report-download?date_start=${formatDate(timeRange[0])}&date_end=${formatDate(timeRange[1])}`">
+          <b-button class="btn btn-primary">Download Xlsx</b-button>
         </a>
       </div>
     </div>
@@ -79,6 +82,10 @@ export default {
   },
 
   methods: {
+    formatDate(d) {
+      return moment(d).format('YYYY-MM-DD');
+    },
+    
     datePickerChange() {
       this.fetchData();
     },
