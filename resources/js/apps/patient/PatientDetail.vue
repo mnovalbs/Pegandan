@@ -24,19 +24,20 @@
       </table>
     </panel>
 
-    <report-table
+    <report-list
       v-if="!loading"
       :list="patient.history"
+      :patientId="patient.id"
       @requestUpdate="fetchData"
     >
-    </report-table>
+    </report-list>
 
   </div>
 </template>
 
 <script>
 import Panel from "../../components/Panel";
-import ReportTable from '../../components/ReportTable';
+import ReportList from '../report/ReportList';
 import API from "../../interface";
 
 export default {
@@ -52,7 +53,7 @@ export default {
 
   components: {
     Panel,
-    ReportTable
+    ReportList
   },
 
   mounted() {

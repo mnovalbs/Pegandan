@@ -11,7 +11,7 @@
     </b-form-group>
 
     <b-form-group label="Patient">
-      <b-form-select v-model="report.patient_id" :disabled="isEdit" :options="patientOptions"></b-form-select>
+      <b-form-select v-model="report.patient_id" :disabled="lockPatient || isEdit" :options="patientOptions"></b-form-select>
     </b-form-group>
 
     <b-form-group label="Indicator">
@@ -93,6 +93,11 @@ export default {
     },
 
     isEdit: {
+      type: Boolean,
+      default: false
+    },
+
+    lockPatient: {
       type: Boolean,
       default: false
     }
