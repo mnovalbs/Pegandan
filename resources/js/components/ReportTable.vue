@@ -43,6 +43,7 @@
 </template>
 
 <script>
+import moment from 'moment';
 import DatePicker from 'vue2-datepicker';
 import ReportForm from "./ReportForm";
 import Panel from "./Panel";
