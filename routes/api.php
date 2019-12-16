@@ -17,6 +17,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+Route::get('/report/indicators', 'ReportController@indicators');
 Route::get('/report', 'ReportController@list');
 Route::post('/report', 'ReportController@create');
 Route::delete('/report/{id}', 'ReportController@delete');

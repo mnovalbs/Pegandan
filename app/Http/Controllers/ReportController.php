@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use \App\Report;
+use \App\Indicator;
 use \App\IndicatorStep;
 use \App\ReportStep;
 use Illuminate\Http\Request;
@@ -61,12 +62,55 @@ class ReportController extends Controller
         return response()->api(201, $report);
     }
 
+    public function indicators(Request $request)
+    {
+        $date_start = $request->input('date_start');
+        $date_end = $request->input('date_end');
+
+        $indicators = Indicator::get();
+        $reports = [];
+
+        foreach($indicators as $indicator)
+        {
+            $report = $this->indicator_report($indicator->id, $date_start, $date_end);
+            array_push($reports, [
+                'name' => $indicator->name,
+                'report' => $report
+            ]);
+        }
+
+        return response()->api(200, $reports);
+    }
+
     public function delete($id)
     {
         $indicator = Report::find($id);
         $indicator->delete();
 
         return response()->api(200, 'ok');
+    }
+
+    private function indicator_report($indicator_id, $date_start, $date_end)
+    {
+        $complete = Report::where('indicator_id', $indicator_id)
+                          ->where('reported_at', '<=', $date_end)
+                          ->where('reported_at', '>=', $date_start)
+                          ->where('status', 1)
+                          ->count();
+        
+        $in_complete = Report::where('indicator_id', $indicator_id)
+                             ->where('reported_at', '<=', $date_end)
+                             ->where('reported_at', '>=', $date_start)
+                             ->where('status', 0)
+                             ->count();
+
+        $total = $complete + $in_complete;
+        
+        return [
+            'complete' => $complete,
+            'incomplete' => $in_complete,
+            'percentage' => $total !== 0 ? $complete / ( $complete + $in_complete ) : 0
+        ];
     }
 
     private function report_step_exists($report_id, $indicator_step_id)
