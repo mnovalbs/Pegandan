@@ -18,7 +18,7 @@ class Patient extends Model
         $date_birth = date_create($this->birth_date);
 
         $date_diff = date_diff($date_now, $date_birth);
-        return (int)$date_diff->format("%y");
+        return $date_diff->format("%ythn %mbln");
     }
 
     public function kelurahan() 
