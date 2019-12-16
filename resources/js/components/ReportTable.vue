@@ -64,8 +64,8 @@ export default {
 
       dataEdit: {},
       timeRange: [
-        new Date(Date.now() - (3600 * 24 * 30 * 1000)),
-        new Date()
+        moment().startOf('month').toDate(),
+        moment().endOf('month').toDate()
       ],
     };
   },

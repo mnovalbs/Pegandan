@@ -51,8 +51,8 @@ export default {
     return {
       list: [],
       timeRange: [
-        moment().subtract(1, 'month').toDate(),
-        moment().toDate()
+        moment().startOf('month').toDate(),
+        moment().endOf('month').toDate()
       ]
     };
   },

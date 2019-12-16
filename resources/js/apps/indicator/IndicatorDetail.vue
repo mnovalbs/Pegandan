@@ -46,6 +46,7 @@
 </template>
 
 <script>
+import moment from 'moment';
 import DatePicker from 'vue2-datepicker';
 import API from "../../interface";
 import ReportTable from "../../components/ReportTable";
@@ -61,8 +62,8 @@ export default {
       loading: true,
       indicator: {},
       timeRange: [
-        new Date(Date.now() - (3600 * 24 * 30 * 1000)),
-        new Date()
+        moment().startOf('month').toDate(),
+        moment().endOf('month').toDate()
       ],
     };
   },
