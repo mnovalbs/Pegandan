@@ -38,3 +38,13 @@
   font-weight: normal;
 }
 
+.b-table.report-table {
+  border: 1px solid #eee;
+}
+
+.b-table.report-table > thead > tr > th {
+  text-align: center;
+  vertical-align: middle;
+  border: 1px solid #eee;
+}
+

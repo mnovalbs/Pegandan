@@ -36,6 +36,7 @@ export default {
     list: () => axios.get(apiUrl('/report')),
     create: data => axios.post(apiUrl(`/report`), data),
     delete: id => axios.delete(apiUrl(`/report/${id}`)),
-    update: (id, data) => axios.patch(apiUrl(`/report/${id}`), data)
+    update: (id, data) => axios.patch(apiUrl(`/report/${id}`), data),
+    indicator: (dateStart, dateEnd) => axios.get(apiUrl(`/report/indicators?date_start=${dateStart}&date_end=${dateEnd}`))
   }
 }

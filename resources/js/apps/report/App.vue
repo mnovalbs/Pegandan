@@ -1,5 +1,7 @@
 <template>
   <div>
+    <report-indicator></report-indicator>
+
     <b-button
       class="btn btn-primary btn-create"
       @click="$bvModal.show('modal-create')"
@@ -21,6 +23,7 @@
 <script>
 import ReportForm from "../../components/ReportForm";
 import ReportTable from '../../components/ReportTable';
+import ReportIndicator from '../../components/ReportIndicator';
 import API from "../../interface";
 
 const defaultData = {
@@ -44,6 +47,7 @@ export default {
   },
 
   components: {
+    ReportIndicator,
     ReportTable,
     ReportForm
   },
