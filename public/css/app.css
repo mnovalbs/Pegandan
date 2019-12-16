@@ -48,3 +48,8 @@
   border: 1px solid #eee;
 }
 
+.mx-datepicker-range {
+  max-width: 100%;
+  margin-bottom: 10px;
+}
+

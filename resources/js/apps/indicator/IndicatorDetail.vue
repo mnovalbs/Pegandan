@@ -3,7 +3,7 @@
     <span v-if="loading">Loading...</span>
 
     <div v-else class="row">
-      <div class="col-md-6">
+      <div class="col-md-8">
         <panel title="Indicator Detail">
           <table class="table-user">
             <tbody>
@@ -15,8 +15,25 @@
             </tbody>
           </table>
         </panel>
+
+        <panel title="Complete / Incomplete">
+          <table class="table-user">
+            <tbody>
+              <tr>
+                <td>Complete</td>
+                <td>:</td>
+                <td>{{ completeLength }} ({{ toPercentage(completeLength ? (completeLength / (completeLength + incompleteLength)) : 0) }})</td>
+              </tr>
+              <tr>
+                <td>Incomplete</td>
+                <td>:</td>
+                <td>{{ incompleteLength }} ({{ toPercentage(incompleteLength ? (incompleteLength / (completeLength + incompleteLength)) : 0) }})</td>
+              </tr>
+            </tbody>
+          </table>
+        </panel>
       </div>
-      <div class="col-md-6">
+      <div class="col-md-4">
         <panel title="Chart">
           <date-picker v-model="timeRange" range></date-picker>
           <pie-chart :options="chartOptions" :chartdata="chartData"></pie-chart>
@@ -58,6 +75,14 @@ export default {
   },
 
   computed: {
+    completeLength() {
+      return this.indicator.report.filter(l => l.status).length;
+    },
+
+    incompleteLength() {
+      return this.indicator.report.filter(l => !l.status).length;
+    },
+
     filteredReport() {
       const indicator = this.indicator;
       return indicator.report.filter(l => {
@@ -121,7 +146,11 @@ export default {
       const { data } = await API.indicators.detail(this.id);
       this.indicator = data.data;
       this.loading = false;
-    }
+    },
+
+    toPercentage(val) {
+      return (val * 100).toFixed(0) + '%';
+    },
   }
 };
 </script>
