@@ -2,40 +2,56 @@
   <div>
     <span v-if="loading">Loading...</span>
 
-    <div v-else class="row">
-      <div class="col-md-8">
-        <panel title="Indicator Detail">
-          <table class="table-user">
-            <tbody>
-              <tr>
-                <td>Name</td>
-                <td>:</td>
-                <td>{{ indicator.name }}</td>
-              </tr>
-            </tbody>
-          </table>
-        </panel>
+    <div v-else>
+      <div class="row">
+        <div class="col-md-12">
+          <panel title="Indicator Detail">
+            <table class="table-user">
+              <tbody>
+                <tr>
+                  <td>Name</td>
+                  <td>:</td>
+                  <td>{{ indicator.name }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </panel>
 
-        <panel title="Complete / Incomplete">
-          <table class="table-user">
-            <tbody>
-              <tr>
-                <td>Complete</td>
-                <td>:</td>
-                <td>{{ completeLength }} ({{ toPercentage(completeLength ? (completeLength / (completeLength + incompleteLength)) : 0) }})</td>
-              </tr>
-              <tr>
-                <td>Incomplete</td>
-                <td>:</td>
-                <td>{{ incompleteLength }} ({{ toPercentage(incompleteLength ? (incompleteLength / (completeLength + incompleteLength)) : 0) }})</td>
-              </tr>
-            </tbody>
-          </table>
+          <!-- <panel title="Complete / Incomplete">
+            <table class="table-user">
+              <tbody>
+                <tr>
+                  <td>Complete</td>
+                  <td>:</td>
+                  <td>{{ completeLength }} ({{ toPercentage(completeLength ? (completeLength / (completeLength + incompleteLength)) : 0) }})</td>
+                </tr>
+                <tr>
+                  <td>Incomplete</td>
+                  <td>:</td>
+                  <td>{{ incompleteLength }} ({{ toPercentage(incompleteLength ? (incompleteLength / (completeLength + incompleteLength)) : 0) }})</td>
+                </tr>
+              </tbody>
+            </table>
+          </panel>-->
+        </div>
+      </div>
+    </div>
+
+    <date-picker v-model="timeRange" range></date-picker>
+
+    <div class="row">
+      <div class="col-md-4">
+        <panel title="Complete / Kelurahan">
+          <pie-chart :options="chartOptions" :chartdata="completeData"></pie-chart>
         </panel>
       </div>
       <div class="col-md-4">
-        <panel title="Chart">
-          <date-picker v-model="timeRange" range></date-picker>
+        <panel title="Incomplete / Kelurahan">
+          <pie-chart :options="chartOptions" :chartdata="incompleteData"></pie-chart>
+        </panel>
+      </div>
+      <div class="col-md-4">
+        <panel title="Chart by Kelurahan">
           <pie-chart :options="chartOptions" :chartdata="chartData"></pie-chart>
         </panel>
       </div>
@@ -46,12 +62,14 @@
 </template>
 
 <script>
-import moment from 'moment';
-import DatePicker from 'vue2-datepicker';
+import moment from "moment";
+import DatePicker from "vue2-datepicker";
 import API from "../../interface";
 import ReportTable from "../../components/ReportTable";
 import Panel from "../../components/Panel";
 import PieChart from "../../components/PieChart";
+
+const backgroundColor = ["#E91E63", "#9C27B0", "#2196F3", "#009688", "#CDDC39"];
 
 export default {
   name: "IndicatorDetail",
@@ -62,9 +80,13 @@ export default {
       loading: true,
       indicator: {},
       timeRange: [
-        moment().startOf('month').toDate(),
-        moment().endOf('month').toDate()
-      ],
+        moment()
+          .startOf("month")
+          .toDate(),
+        moment()
+          .endOf("month")
+          .toDate()
+      ]
     };
   },
 
@@ -87,7 +109,7 @@ export default {
     filteredReport() {
       const indicator = this.indicator;
       return indicator.report.filter(l => {
-        const reportedAt = (new Date(l.reported_at + " 00:00:00")).getTime();
+        const reportedAt = new Date(l.reported_at + " 00:00:00").getTime();
         const timePrev = this.timeRange[0].getTime();
         const timeNext = this.timeRange[1].getTime();
 
@@ -98,14 +120,23 @@ export default {
     kels() {
       const kelurahan = [];
       this.filteredReport.forEach(report => {
+        const { status } = report;
         const { id, name } = report.patient.kelurahan;
         const kel = kelurahan.find(idn => idn.id === id);
 
         if (!kel) {
-          kelurahan.push({ id, name, count: 1 });
+          kelurahan.push({
+            id,
+            name,
+            count: 1,
+            complete: status ? 1 : 0,
+            incomplete: !status ? 1 : 0
+          });
           return;
         }
 
+        if (status) kel.complete += 1;
+        if (!status) kel.incomplete += 1;
         kel.count += 1;
       });
       return kelurahan;
@@ -117,20 +148,40 @@ export default {
       };
     },
 
+    completeData() {
+      return {
+        labels: this.kels.map(kel => kel.name),
+        datasets: [
+          {
+            backgroundColor,
+            data: this.kels.map(kel => kel.complete),
+            label: "Complete"
+          }
+        ]
+      };
+    },
+
+    incompleteData() {
+      return {
+        labels: this.kels.map(kel => kel.name),
+        datasets: [
+          {
+            backgroundColor,
+            data: this.kels.map(kel => kel.incomplete),
+            label: "Complete"
+          }
+        ]
+      };
+    },
+
     chartData() {
       return {
         labels: this.kels.map(kel => kel.name),
         datasets: [
           {
+            backgroundColor,
             data: this.kels.map(kel => kel.count),
-            backgroundColor: [
-              '#E91E63',
-              '#9C27B0',
-              '#2196F3',
-              '#009688',
-              '#CDDC39',
-            ],
-            label: 'Dataset'
+            label: "Dataset"
           }
         ]
       };
@@ -150,8 +201,8 @@ export default {
     },
 
     toPercentage(val) {
-      return (val * 100).toFixed(0) + '%';
-    },
+      return (val * 100).toFixed(0) + "%";
+    }
   }
 };
 </script>
