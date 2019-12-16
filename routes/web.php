@@ -30,6 +30,7 @@ Route::group(['middleware'=>['auth','occupation:Admin']], function()
 	Route::get('/kelurahan','KelurahanController@view');
 	Route::get('/patient/{vue_capture?}', 'PatientController@index')
 			->where('vue_capture', '[\/\w\.-]*');
+	Route::get('/report-download', 'ReportController@indicators_download');
 	Route::get('/report','ReportController@view');
 	Route::get('/indicator/{vue_capture?}', 'IndicatorController@view')
 			->where('vue_capture', '[\/\w\.-]*');

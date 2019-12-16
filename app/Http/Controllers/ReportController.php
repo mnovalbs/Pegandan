@@ -7,6 +7,8 @@ use \App\Indicator;
 use \App\IndicatorStep;
 use \App\ReportStep;
 use Illuminate\Http\Request;
+use PhpOffice\PhpSpreadsheet\IOFactory;
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
 
 class ReportController extends Controller
 {
@@ -80,6 +82,43 @@ class ReportController extends Controller
         }
 
         return response()->api(200, $reports);
+    }
+
+    public function indicators_download(Request $request)
+    {
+        $date_start = $request->input('date_start');
+        $date_end = $request->input('date_end');
+
+        $indicators = Indicator::get();
+        $reports = [];
+
+        foreach($indicators as $indicator)
+        {
+            $report = $this->indicator_report($indicator->id, $date_start, $date_end);
+            array_push($reports, [
+                $indicator->name,
+                $report['complete'],
+                $report['incomplete'],
+                $report['percentage'] * 100
+            ]);
+        }
+
+        $spreadsheet = new Spreadsheet();
+        $spreadsheet->getActiveSheet()->fromArray(['Indicator', 'Status', '', 'Percentage'], NULL, 'A1');
+        $spreadsheet->getActiveSheet()->fromArray(['', 'Complete', 'Incomplete'], NULL, 'A2');
+        $spreadsheet->getActiveSheet()->mergeCells('A1:A2');
+        $spreadsheet->getActiveSheet()->mergeCells('B1:C1');
+        $spreadsheet->getActiveSheet()->mergeCells('D1:D2');
+        $spreadsheet->getActiveSheet()->fromArray($reports, NULL, 'A3');
+
+        $date = Date("Y-m-d H-m-s");
+
+        header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+        header('Content-Disposition: attachment;filename="' . $date . '.xlsx"');
+        header('Cache-Control: max-age=0');
+        $writer = IOFactory::createWriter($spreadsheet, 'Xlsx');
+        $writer->save('php://output');
+        exit;
     }
 
     public function delete($id)
